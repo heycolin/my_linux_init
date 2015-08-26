@@ -1,36 +1,5 @@
 #!/usr/bin/env bash
 
-#spf13_dir="$HOME/.spf13-vim-3"
-#
-#git_uri="https://github.com/zhiqunq/vim-local.git"
-#git_branch="master"
-#local_dir="$HOME/.vim-local"
-#local_spf13_dir="$local_dir/spf13-vim"
-#
-#if [ ! -e "$local_dir" ]; then
-#    git clone --recursive -b "$git_branch" "$git_uri" "$local_dir"
-#fi
-#
-#if [ ! -e "$spf13_dir" ]; then
-#    ln -sf "$local_spf13_dir" "$spf13_dir"
-#fi
-#
-#lnfile() {
-#    if [ -e "$local_dir/$1" ]; then
-#        ln -sf "$local_dir/$1" "$HOME/.$1"
-#    fi
-#}
-#
-#lnfile "vimrc.before.fork"
-#
-#
-#bash "$spf13_dir/bootstrap.sh"
-#
-#lnfile "vimrc.local"
-#lnfile "vimrc.bundles.local"
-
-######################################################################
-
 _mkdir_() {
     if [ ! -e "$1" ]; then
         mkdir "$1"
@@ -51,9 +20,20 @@ if [ ! -e "$local_dir" ]; then
     git clone "$git_uri" "$local_dir"
 fi
 
-# cp file
-cp "$local_dir/bundles.vim" "$HOME/.vim/"
-cp "$local_dir/vimrc" "$HOME/.vimrc"
+# ln file
+do_backup() {
+    if [ -e "$2" ]; then
+        today=`date +%Y%m%d_%s`
+        mv "$2" "$2.$today"
+    fi
+}
+_lnfile_() {
+    do_backup "$1" "$2"
+    ln -sf "$1" "$2"
+}
+_lnfile_ "$local_dir/bundles.vim" "$HOME/.vim/bundles.vim"
+_lnfile_ "$local_dir/vimrc" "$HOME/.vimrc"
+_lnfile_ "$local_dir/zshrc" "$HOME/.zshrc"
 sudo cp $local_dir/*.ttf /usr/share/fonts/truetype/
 # sudo fc-cache -f -v
 
