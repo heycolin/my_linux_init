@@ -281,6 +281,7 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
+let g:SuperTabMappingForward="<tab>" 
 
 function! DoNothing(findstart, base)
 endfunction
