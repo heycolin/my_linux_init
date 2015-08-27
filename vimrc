@@ -165,6 +165,8 @@ let g:user_emmet_expandabbr_key='<C-j>'
 
 " powerline
 let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+" set fillchars+=stl:\ ,stlnc:\
 
 " NeoComplCache
 "let g:neocomplcache_enable_at_startup=1
@@ -281,11 +283,10 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
-let g:SuperTabMappingForward="<tab>" 
+let g:SuperTabMappingForward="<tab>"
 
 function! DoNothing(findstart, base)
 endfunction
-
 set completefunc=DoNothing
 
 " ctrlp
@@ -293,8 +294,8 @@ set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_S
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " Keybindings for plugin toggle
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
+" nnoremap <F2> :set invpaste paste?<CR>
 nmap <F3> :GundoToggle<cr>
 nmap <F4> :IndentGuidesToggle<cr>
 nmap <F9> :NERDTreeToggle<cr>
@@ -309,7 +310,7 @@ nmap j gj
 nmap k gk
 
 " ctags
-nmap <C-]> :ts<cr> 1
+nnoremap <c-]> :ts<CR> 1
 
 "------------------
 " Useful Functions
@@ -355,7 +356,8 @@ if has("gui_running")
     set go=aAce  " remove toolbar
     "set transparency=30
     "set guifont=Monaco:h13
-    set guifont=Ubuntu\ Mono\ 14
+    set guifont=Monaco\ 12
+    " show tab 2--show,1--don't show
     set showtabline=1
     set columns=140
     set lines=40
@@ -373,5 +375,8 @@ if has("gui_running")
     map <D-0> :tablast<CR>
 endif
 
+
 au BufNewFile,BufRead *.py set foldmethod=indent foldnestmax=2
 au BufNewFile,BufRead *.lua set foldmethod=indent foldnestmax=200
+
+set tags=/home/colin/sprite/tags;
