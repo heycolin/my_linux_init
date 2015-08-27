@@ -6,8 +6,8 @@ _mkdir_() {
     fi
 }
 
-local_dir="$HOME/my_vim_set"
-git_uri="https://github.com/heycolin/my_vim_set.git"
+local_dir="$HOME/my_linux_init"
+git_uri="https://github.com/heycolin/my_linux_init.git"
 
 # check vundle
 if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
