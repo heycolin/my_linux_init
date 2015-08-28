@@ -13,8 +13,15 @@ syntax on
 " Vim UI
 "--------
 " color scheme
-set background=dark
-color solarized
+if has("gui_running")
+    " gvim
+    set background=dark
+    color solarized
+else
+    " vim
+    " color desert
+    color default
+endif
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -152,7 +159,7 @@ let NERDTreeWinSize=30
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
-let NERDTreeShowBookmarks=1
+let NERDTreeShowBookmarks=0
 let NERDTreeWinPos = "left"
 
 " nerdcommenter
