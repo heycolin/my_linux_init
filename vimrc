@@ -154,13 +154,15 @@ if executable('coffeetags')
 endif
 
 " Nerd Tree
-let NERDChristmasTree=0
+let NERDChristmasTree=1
 let NERDTreeWinSize=30
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
 let NERDTreeShowBookmarks=0
-let NERDTreeWinPos = "left"
+let NERDTreeWinPos="left"
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
 
 " nerdcommenter
 let NERDSpaceDelims=1
@@ -210,7 +212,7 @@ let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.

@@ -37,74 +37,39 @@ plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabr
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export ANDROID_ROOT=$HOME/sdks/android-sdk
-export ANDROID_SDK_ROOT=$HOME/sdks/android-sdk
-export NDK_ROOT=$HOME/sdks/android-ndk
-export ANDROIDSDK=$HOME/sdks/android-sdk/
-export ANDROIDNDK=$HOME/sdks/android-ndk/
-export COCOS2DX_ROOT=$HOME/src/cocos2d-1.0
-export ANDROIDNDKVER=r9
-export ANDROIDAPI=18
-export ANT_HOME=$HOME/sdks/apache-ant-1.9.6
-#export ANT_ROOT=/usr/share/ant/bin
-
 export LD_LIBRARY_PATH=.
 export LD_LIBRARY_PATH=.:$HOME/cocos2dx/lib/linux/debug/
 
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-export PATH=$PATH:$ANT_HOME/bin
-#export PATH=$PATH:$HOME/genymotion/genymotion:$HOME/sdks/android-ndk:$HOME/sdks/android-sdk/tools:$HOME/sdks/android-sdk-linux/platform-tools/
-#export PATH=$PATH:$HOME/src/lhimg
-#export PATH=$PATH:$HOME/src/pypy-c-jit-59278-70ae9ffd470e-linux/bin
-#export PATH=$PATH:$HOME/src/tolua_protobuf
-#export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#export PATH=$PATH:$HOME/.cabal/bin
-#export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-#yzzh
-#export PATH=$PATH:$HOME/yzzh/protocol/protocol:$ANT_ROOT
-#export FRAMEWORK=$HOME/yzzh/framework
-#export CLIENT_DIRECTORY=$HOME/yzzh/client/
+# Customize to your needs...
+#export ANDROID_ROOT=$HOME/sdks/android-sdk
+#export ANDROID_SDK_ROOT=$HOME/sdks/android-sdk
+#export NDK_ROOT=$HOME/sdks/android-ndk
+#export ANDROIDSDK=$HOME/sdks/android-sdk/
+#export ANDROIDNDK=$HOME/sdks/android-ndk/
+#export COCOS2DX_ROOT=$HOME/src/cocos2d-1.0
+#export ANDROIDNDKVER=r9
+#export ANDROIDAPI=18
+#export ANT_HOME=$HOME/sdks/apache-ant-1.9.6
+#export ANT_ROOT=/usr/share/ant/bin
 
-#poem
-#export PYTHONPATH=/home/yihuang/poem/program/protocol/py
-#export PYTHONPATH=$HOME/poem/engine:$PYTHONPATH
-#export CSV_PATH=$HOME/poem/design/需求文档/数值/CSV
-#export POEM_PACKED_RESOURCE_PATH=$HOME/poem/program/Client/pc/assets
+# JAVA
+#export JAVA_HOME=$HOME/sdks/jdk.../
+#export CLASSPATH=$JAVA_HOME/lib:.
+#export PATH=$PATH:$JAVA_HOME/bin
 
-#sprite
-#export FRAMEWORK=$HOME/sprite/framework
-#export CLIENT_DIRECTORY=$HOME/sprite/win32_client/
-#export PATH=$PATH:$HOME/sprite/protocol/protocol:$ANT_ROOT
-#export FRAMEWORK=$HOME/sprite/framework
-#export CLIENT_DIRECTORY=$HOME/sprite/win32_client/
+# ANDROIDSDK
+export ANDROID_HOME=$HOME/sdks/android-sdk-linux
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export JAVA_CMD=/usr/lib/jvm/java-7-openjdk-amd64/bin/java
 
-#export POEM_RESOURCE_PATH=$HOME/poem_res
-#export RESOURCE_REPOSITORY=$HOME/assets
 
 export SERVERS='13 84 133 134 135 136 137 85 86 90 91'
 
-#xset r rate 200 80
+xset r rate 150 80
 
 alias gvim="gvim 2>/dev/null"
-
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-#export COCOS_CONSOLE_ROOT=/home/xiaou/storm/cocos2d-x/tools/cocos2d-console/bin
-#export PATH=$COCOS_CONSOLE_ROOT:$PATH
-#
-## Add environment variable COCOS_X_ROOT for cocos2d-x
-#export COCOS_X_ROOT=/home/xiaou/storm/cocos2d-x
-#export PATH=$COCOS_X_ROOT:$PATH
-#
-## Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
-#export COCOS_TEMPLATES_ROOT=/home/xiaou/storm/cocos2d-x/templates
-#export PATH=$COCOS_TEMPLATES_ROOT:$PATH
-#
-# Add environment variable ANT_ROOT for cocos2d-x
-
-
 
 #########################################
 ##color{{{
