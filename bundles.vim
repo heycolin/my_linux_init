@@ -103,4 +103,9 @@ Bundle 'Lokaltog/vim-distinguished'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'fisadev/fisa-vim-colorscheme'
 
+"--------------
+" multiple-cursors
+"--------------
+Bundle 'terryma/vim-multiple-cursors'
+
 filetype plugin indent on     " required!

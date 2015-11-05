@@ -15,13 +15,21 @@ syntax on
 " color scheme
 if has("gui_running")
     " gvim
-    set background=dark
+    set background=light
+    " set background=dark
     color solarized
 else
     " vim
-    " color desert
-    color default
+    color desert
+    " color default
 endif
+
+" color Tomorrow
+" color peachbuff
+"
+" color desert
+" color monokai
+" color evening
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -261,6 +269,34 @@ set completefunc=DoNothing
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
+"" multiple-cursors
+"let g:multi_cursor_use_default_mapping=0
+"" Default mapping
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_prev_key='<C-p>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+" Map start key separately from next key
+"let g:multi_cursor_start_key='<F6>'
+"
+"let g:multi_cursor_start_key='<C-n>'
+"let g:multi_cursor_start_word_key='g<C-n>'
+"let g:multi_cursor_quit_key='<C-c>'
+nnoremap <C-c> :call multiple_cursors#quit()<CR>
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+    if exists(':NeoCompleteLock')==2
+        exe 'NeoCompleteLock'
+    endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default<Esc>)
+function! Multiple_cursors_after()
+    if exists(':NeoCompleteUnlock')==2
+        exe 'NeoCompleteUnlock'
+    endif
+endfunction
+
 " Keybindings for plugin toggle
 " set pastetoggle=<F2>
 " nnoremap <F2> :set invpaste paste?<CR>
@@ -331,7 +367,7 @@ if has("gui_running")
     set go=aAce  " remove toolbar
     "set transparency=30
     "set guifont=Monaco:h13
-    set guifont=Monaco\ 12
+    set guifont=Monaco\ 10
     " show tab 2--show,1--don't show
     set showtabline=1
     set columns=140
