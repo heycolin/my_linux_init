@@ -999,17 +999,47 @@
 
         " See `:echo g:airline_theme_map` for some more choices
         " Default in terminal vim is 'dark'
-        if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-            if !exists('g:airline_theme')
-                let g:airline_theme = 'solarized'
-            endif
-            if !exists('g:airline_powerline_fonts')
-                " Use the default set of separators with a few customizations
-                let g:airline_left_sep='›'  " Slightly fancier than '>'
-                let g:airline_right_sep='‹' " Slightly fancier than '<'
-            endif
-        endif
+        let g:Powerline_symbols = 'fancy'
+        "      if isdirectory(expand("~/.vim/bundle/vim-airline/"))
+        "          if !exists('g:airline_theme')
+        "              let g:airline_theme = 'solarized'
+        "          endif
+        "          if !exists('g:airline_powerline_fonts')
+        "              " Use the default set of separators with a few customizations
+        "              let g:airline_left_sep='›'  " Slightly fancier than '>'
+        "              let g:airline_right_sep='‹' " Slightly fancier than '<'
+        "          endif
+        "      endif
     " }
+
+    " multiple-cursors {
+        "let g:multi_cursor_use_default_mapping=0
+        "" Default mapping
+        "let g:multi_cursor_next_key='<C-n>'
+        "let g:multi_cursor_prev_key='<C-p>'
+        "let g:multi_cursor_skip_key='<C-x>'
+        "let g:multi_cursor_quit_key='<Esc>'
+        " Map start key separately from next key
+        "let g:multi_cursor_start_key='<F6>'
+        "
+        "let g:multi_cursor_start_key='<C-n>'
+        "let g:multi_cursor_start_word_key='g<C-n>'
+        "let g:multi_cursor_quit_key='<C-c>'
+        nnoremap <C-c> :call multiple_cursors#quit()<CR>
+        " Called once right before you start selecting multiple cursors
+        function! Multiple_cursors_before()
+            if exists(':NeoCompleteLock')==2
+                exe 'NeoCompleteLock'
+            endif
+        endfunction
+
+        " Called once only when the multiple selection is canceled (default<Esc>)
+        function! Multiple_cursors_after()
+            if exists(':NeoCompleteUnlock')==2
+                exe 'NeoCompleteUnlock'
+            endif
+        endfunction
+        " }
 
 " }
 
@@ -1021,7 +1051,7 @@
         set lines=40                " 40 lines of text instead of 24
         if !exists("g:spf13_no_big_font")
             if LINUX() && has("gui_running")
-                set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
+                set guifont=Monaco\ 12,Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
             elseif OSX() && has("gui_running")
                 set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
             elseif WINDOWS() && has("gui_running")

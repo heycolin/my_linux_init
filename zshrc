@@ -58,11 +58,30 @@ export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/s
 #export JAVA_HOME=$HOME/sdks/jdk.../
 #export CLASSPATH=$JAVA_HOME/lib:.
 #export PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME=/home/colin/android/jdk1.8.0_66
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
+export PATH=$JAVA_HOME/bin:$PATH
+
+# # ANT
+# export ANT_HOME=$HOME/sdks/apache-ant-1.9.6
 
 # ANDROIDSDK
 export ANDROID_HOME=$HOME/sdks/android-sdk-linux
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export JAVA_CMD=/usr/lib/jvm/java-7-openjdk-amd64/bin/java
+
+# NDK
+export NDK_ROOT=$HOME/sdks/android-ndk-r9/
+export ANDROIDNDK=$HOME/sdks/android-ndk-r9/
+export ANDROIDNDKVER=r9
+
+# android package
+export PATH=$HOME/sprite/pkgtools:$PATH
+export FRAMEWORK=$HOME/sprite/framework
+
+export NDK_MODULE_PATH=${FRAMEWORK}/cocos2d-x-2.1.5:${FRAMEWORK}/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt:${FRAMEWORK}
+
 
 
 export SERVERS='13 84 133 134 135 136 137 85 86 90 91'
