@@ -1,5 +1,3 @@
-source ~/.vim/bundles.vim
-
 " Environment {
     " Identify platform {
         silent function! OSX()
@@ -24,7 +22,7 @@ source ~/.vim/bundles.vim
         " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
         " across (heterogeneous) systems easier.
         if WINDOWS()
-          set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+          " set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
         endif
     " }
 
@@ -35,7 +33,118 @@ source ~/.vim/bundles.vim
         endif
     " }
 
+    if LINUX()
+        set rtp+=~/.vim/bundle/vundle/
+        call vundle#rc()
+    else
+        set rtp+=$VIM/vimfiles/bundle/vundle/
+        call vundle#rc('$VIM/vimfiles/bundle/')
+    endif
+
+
     set tags=/home/colin/sprite/tags,./tags
+" }
+
+" Bundle {
+    " Bundle 'bufexplorer.zip'
+    Bundle 'gmarik/vundle'
+
+    "------------------
+    " code completions
+    "------------------
+    Bundle 'shougo/neocomplete'
+    Bundle 'mattn/emmet-vim'
+    Bundle 'raimondi/delimitmate'
+    Bundle 'ervandew/supertab'
+    " snippets
+    Bundle 'garbas/vim-snipmate'
+    Bundle 'honza/vim-snippets'
+    "------ snipmate dependencies -------
+    Bundle 'marcweber/vim-addon-mw-utils'
+    Bundle 'tomtom/tlib_vim'
+
+    "-----------------
+    " fast navigation
+    "-----------------
+    Bundle 'edsono/vim-matchit'
+    Bundle 'lokaltog/vim-easymotion'
+
+    "--------------
+    " fast editing
+    "--------------
+    Bundle 'tpope/vim-surround'
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'sjl/gundo.vim'
+    Bundle 'godlygeek/tabular'
+    Bundle 'nathanaelkane/vim-indent-guides'
+
+    "--------------
+    " ide features
+    "--------------
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'humiaozuzu/tabbar'
+    Bundle 'majutsushi/tagbar'
+    Bundle 'mileszs/ack.vim'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'lokaltog/vim-powerline'
+    "Bundle 'powerline/powerline'
+    Bundle 'scrooloose/syntastic'
+    Bundle 'bronson/vim-trailing-whitespace'
+
+    "-------------
+    " other utils
+    "-------------
+    " Bundle 'humiaozuzu/fcitx-status'
+    Bundle 'nvie/vim-togglemouse'
+
+    "----------------------------------------
+    " syntax/indent for language enhancement
+    "----------------------------------------
+    "------- web backend ---------
+    Bundle '2072/php-indenting-for-vim'
+    "Bundle 'tpope/vim-rails'
+    Bundle 'lepture/vim-jinja'
+    "Bundle 'digitaltoad/vim-jade'
+
+    "------- web frontend ----------
+    Bundle 'othree/html5.vim'
+    " Bundle 'tpope/vim-haml'
+    Bundle 'pangloss/vim-javascript'
+    Bundle 'kchmck/vim-coffee-script'
+    Bundle 'nono/jquery.vim'
+    " Bundle 'groenewege/vim-less'
+    " Bundle 'wavded/vim-stylus'
+    " Bundle 'nono/vim-handlebars'
+
+    "------- markup language -------
+    Bundle 'tpope/vim-markdown'
+    " Bundle 'timcharper/textile.vim'
+
+    "------- ruby --------
+    " Bundle 'tpope/vim-endwise'
+
+    "------- go ----------
+    Bundle 'fatih/vim-go'
+
+    "------- fps ------
+    Bundle 'kien/rainbow_parentheses.vim'
+    " Bundle 'wlangstroth/vim-racket'
+    " Bundle 'vim-scripts/vimclojure'
+    " Bundle 'rosstimson/scala-vim-support'
+
+    "--------------
+    " color schemes
+    "--------------
+    Bundle 'rickharris/vim-blackboard'
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'rickharris/vim-monokai'
+    Bundle 'tpope/vim-vividchalk'
+    Bundle 'lokaltog/vim-distinguished'
+    Bundle 'chriskempson/vim-tomorrow-theme'
+    Bundle 'fisadev/fisa-vim-colorscheme'
+
+    "==============================================
 " }
 
 " Key (re)Mappings {
@@ -528,16 +637,15 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 16
 
-" TODO wait ---------
+" 设置文件的代码形式
 set encoding=utf-8
-"解决菜单乱码
-""解决consle输出乱码
-language messages zh_CN.utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,chinese,cp936,gb2312,gb18030,gbk,latin1,latin-1
 
-" encoding dectection
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1,chinese,latin-1
-if has("win32")
-    set fileencoding=chinese
-else
-    set fileencoding=utf-8
-endif
+" vim的菜单乱码解决：
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+" vim提示信息乱码的解决
+language messages zh_CN.utf-8
