@@ -39,9 +39,9 @@ end
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/sky/theme.lua")
---beautiful.init("/home/colin/.config/awesome/themes/sky/theme.lua")
+beautiful.init("/home/colin/.config/awesome/themes/sky/theme.lua")
 --beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
-beautiful.init("/home/colin/.config/awesome/themes/zenburn/theme.lua")
+--beautiful.init("/home/colin/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -262,6 +262,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
     awful.key({ modkey,           }, "s",     function () awful.util.spawn_with_shell("gnome-screensaver-command -l") end),
     awful.key({ modkey, "Shift"   }, "a",     function () awful.util.spawn_with_shell("/home/colin/my_goagent/run.sh") end),
+    awful.key({ modkey,           }, "a",     function () awful.util.spawn_with_shell("shutter") end),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),

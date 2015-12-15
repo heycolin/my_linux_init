@@ -46,8 +46,8 @@
 " }
 
 " Bundle {
-    " Bundle 'bufexplorer.zip'
     Bundle 'gmarik/vundle'
+    " Bundle 'bufexplorer.zip'
 
     "------------------
     " code completions
@@ -66,13 +66,13 @@
     "-----------------
     " fast navigation
     "-----------------
-    Bundle 'edsono/vim-matchit'
-    Bundle 'lokaltog/vim-easymotion'
+    " Bundle 'edsono/vim-matchit'
+    " Bundle 'lokaltog/vim-easymotion'
 
     "--------------
     " fast editing
     "--------------
-    Bundle 'tpope/vim-surround'
+    " Bundle 'tpope/vim-surround'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'sjl/gundo.vim'
     Bundle 'godlygeek/tabular'
@@ -102,30 +102,30 @@
     " syntax/indent for language enhancement
     "----------------------------------------
     "------- web backend ---------
-    Bundle '2072/php-indenting-for-vim'
+    " Bundle '2072/php-indenting-for-vim'
     "Bundle 'tpope/vim-rails'
     Bundle 'lepture/vim-jinja'
     "Bundle 'digitaltoad/vim-jade'
 
     "------- web frontend ----------
-    Bundle 'othree/html5.vim'
+    " Bundle 'othree/html5.vim'
     " Bundle 'tpope/vim-haml'
-    Bundle 'pangloss/vim-javascript'
-    Bundle 'kchmck/vim-coffee-script'
-    Bundle 'nono/jquery.vim'
+    " Bundle 'pangloss/vim-javascript'
+    " Bundle 'kchmck/vim-coffee-script'
+    " Bundle 'nono/jquery.vim'
     " Bundle 'groenewege/vim-less'
     " Bundle 'wavded/vim-stylus'
     " Bundle 'nono/vim-handlebars'
 
     "------- markup language -------
-    Bundle 'tpope/vim-markdown'
+    " Bundle 'tpope/vim-markdown'
     " Bundle 'timcharper/textile.vim'
 
     "------- ruby --------
     " Bundle 'tpope/vim-endwise'
 
     "------- go ----------
-    Bundle 'fatih/vim-go'
+    " Bundle 'fatih/vim-go'
 
     "------- fps ------
     Bundle 'kien/rainbow_parentheses.vim'
@@ -136,13 +136,18 @@
     "--------------
     " color schemes
     "--------------
-    Bundle 'rickharris/vim-blackboard'
+    " Bundle 'rickharris/vim-blackboard'
     Bundle 'altercation/vim-colors-solarized'
-    Bundle 'rickharris/vim-monokai'
-    Bundle 'tpope/vim-vividchalk'
-    Bundle 'lokaltog/vim-distinguished'
-    Bundle 'chriskempson/vim-tomorrow-theme'
-    Bundle 'fisadev/fisa-vim-colorscheme'
+    " Bundle 'rickharris/vim-monokai'
+    " Bundle 'tpope/vim-vividchalk'
+    " Bundle 'lokaltog/vim-distinguished'
+    " Bundle 'chriskempson/vim-tomorrow-theme'
+    " Bundle 'fisadev/fisa-vim-colorscheme'
+
+    "--------------
+    " multiple-cursors
+    "--------------
+    Bundle 'terryma/vim-multiple-cursors'
 
     "==============================================
 " }
@@ -164,6 +169,7 @@
     nnoremap <leader>a :Ack
     nnoremap <leader>v V`]
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
+    nnoremap <leader>t :Tabularize /
 
     " Wrapped lines goes down/up to next row, rather than next line in file.
     nmap j gj
@@ -204,6 +210,7 @@
     :command Q q
     :command Qa qa
     :command QA qa
+    " :command Tab Tabularize /
 
     " for macvim
     if has("gui_running")
@@ -375,7 +382,7 @@
     " Remove trailing whitespaces and ^M chars
     " To disable the stripping of whitespace, add the following to your
 
-    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | endif "call StripTrailingWhitespace() | endif
     autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
     autocmd FileType haskell setlocal commentstring=--\ %s
     autocmd FileType haskell,rust setlocal nospell
