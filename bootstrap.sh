@@ -35,6 +35,10 @@ _lnfile_ "$local_dir/bundles.vim" "$HOME/.vim/bundles.vim"
 _lnfile_ "$local_dir/vimrc" "$HOME/.vimrc"
 _lnfile_ "$local_dir/zshrc" "$HOME/.zshrc"
 sudo cp $local_dir/*.ttf /usr/share/fonts/truetype/
+
+# zsh plugins
+git clone git://github.com/jimmijj/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone git://github.com/tarruda/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 # sudo fc-cache -f -v
 
 # font file for powline

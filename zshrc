@@ -5,11 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="agnoster"
-#ZSH_THEME="robbyrussell"
 #ZSH_THEME="avit"
-#ZSH_THEME="lambda"
-#ZSH_THEME="random"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -33,7 +29,17 @@ ZSH=$HOME/.oh-my-zsh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabric git-flow vi-mode)
+plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabric git-flow zsh-syntax-highlighting z)
+
+# # Enable autosuggestions automatically.
+# zle-line-init() {
+    # zle autosuggest-start
+# }
+# zle -N zle-line-init
+
+# bindkey '^T' autosuggest-toggle
+# # autosuggest-toggle – disable/enable autosuggestions.
+# # autosuggest-execute-suggestion – accept the suggestion and execute it.
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,28 +49,11 @@ export LD_LIBRARY_PATH=.:$HOME/cocos2dx/lib/linux/debug/
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 # Customize to your needs...
-#export ANDROID_ROOT=$HOME/sdks/android-sdk
-#export ANDROID_SDK_ROOT=$HOME/sdks/android-sdk
-#export NDK_ROOT=$HOME/sdks/android-ndk
-#export ANDROIDSDK=$HOME/sdks/android-sdk/
-#export ANDROIDNDK=$HOME/sdks/android-ndk/
-#export COCOS2DX_ROOT=$HOME/src/cocos2d-1.0
-#export ANDROIDNDKVER=r9
-#export ANDROIDAPI=18
-#export ANT_HOME=$HOME/sdks/apache-ant-1.9.6
-#export ANT_ROOT=/usr/share/ant/bin
-
 # JAVA
-#export JAVA_HOME=$HOME/sdks/jdk.../
-#export CLASSPATH=$JAVA_HOME/lib:.
-#export PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME=/home/colin/android/jdk1.8.0_66
 export JRE_HOME=$JAVA_HOME/jre
 export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
 export PATH=$JAVA_HOME/bin:$PATH
-
-# # ANT
-# export ANT_HOME=$HOME/sdks/apache-ant-1.9.6
 
 # ANDROIDSDK
 export ANDROID_HOME=$HOME/sdks/android-sdk-linux
@@ -82,8 +71,6 @@ export FRAMEWORK=$HOME/sprite/framework
 
 export NDK_MODULE_PATH=${FRAMEWORK}/cocos2d-x-2.1.5:${FRAMEWORK}/cocos2d-x-2.1.5/cocos2dx/platform/third_party/android/prebuilt:${FRAMEWORK}
 
-
-
 export SERVERS='13 84 133 134 135 136 137 85 86 90 91'
 
 xset r rate 150 80
@@ -91,24 +78,6 @@ xset r rate 150 80
 alias gvim="gvim 2>/dev/null"
 
 #########################################
-##color{{{
-#autoload colors
-#colors
-#
-#for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-#eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-#eval $color='%{$fg[${(L)color}]%}'
-#(( count = $count + 1 ))
-#done
-#FINISH="%{$terminfo[sgr0]%}"
-##}}}
-
-##命令提示符 {{{
-#RPROMPT=$(echo "$RED%D %T$FINISH")
-#PROMPT=$(echo "$BLUE%M$GREEN%/
-#$CYAN%n $_YELLOW>>>$FINISH ")
-##}}}
-
 #标题栏、任务栏样式{{{
 case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
    precmd () { print -Pn "\e]0;%n@%M//%/\a" }

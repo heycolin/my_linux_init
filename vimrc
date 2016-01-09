@@ -87,8 +87,9 @@
     Bundle 'mileszs/ack.vim'
     Bundle 'kien/ctrlp.vim'
     Bundle 'tpope/vim-fugitive'
-    Bundle 'lokaltog/vim-powerline'
-    "Bundle 'powerline/powerline'
+    " Bundle 'lokaltog/vim-powerline'
+    " Bundle 'powerline/powerline'
+    Bundle 'bling/vim-airline'
     Bundle 'scrooloose/syntastic'
     Bundle 'bronson/vim-trailing-whitespace'
 
@@ -136,13 +137,13 @@
     "--------------
     " color schemes
     "--------------
-    " Bundle 'rickharris/vim-blackboard'
+    Bundle 'rickharris/vim-blackboard'
     Bundle 'altercation/vim-colors-solarized'
-    " Bundle 'rickharris/vim-monokai'
-    " Bundle 'tpope/vim-vividchalk'
-    " Bundle 'lokaltog/vim-distinguished'
-    " Bundle 'chriskempson/vim-tomorrow-theme'
-    " Bundle 'fisadev/fisa-vim-colorscheme'
+    Bundle 'rickharris/vim-monokai'
+    Bundle 'tpope/vim-vividchalk'
+    Bundle 'lokaltog/vim-distinguished'
+    Bundle 'chriskempson/vim-tomorrow-theme'
+    Bundle 'fisadev/fisa-vim-colorscheme'
 
     "--------------
     " multiple-cursors
@@ -155,10 +156,22 @@
 " Key (re)Mappings {
     " let mapleader = '\'
 
+    " let s:tstyle = "1"
+    " function! ToTomorrow()
+    "     if s:tstyle == "1"
+    "         let s:tstyle = "2"
+    "         :colorscheme Tomorrow
+    "     else
+    "         let s:tstyle = "1"
+    "         :colorscheme Tomorrow-Night-Eighties
+    "     endif
+    " endfunction
+
     " set pastetoggle=<F2>
     " nnoremap <F2> :set invpaste paste?<CR>
     nmap <F3> :GundoToggle<cr>
     nmap <F4> :IndentGuidesToggle<cr>
+    " nmap <F5> :call ToTomorrow()<cr>
     nmap <F6> :call ToggleBG()<cr>
     nmap <F7> :NeoCompleteDisable<cr>
     nmap <F8> :NeoCompleteEnable<cr>
@@ -166,8 +179,6 @@
     nmap <F10> :TagbarToggle<cr>
     nmap <F11> :BufExplorer<cr>
     nmap <D-/> :
-    nnoremap <leader>a :Ack
-    nnoremap <leader>v V`]
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap <leader>t :Tabularize /
 
@@ -268,7 +279,7 @@
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
-    set spell                           " Spell checking on
+    " set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
@@ -404,11 +415,11 @@
         set guioptions-=T           " Remove the toolbar
         set lines=40                " 40 lines of text instead of 24
         if LINUX() && has("gui_running")
-            set guifont=Monaco\ 10,Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
+            set guifont=Consolas\ for\ Powerline\ 10,Monaco\ 10,Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
         elseif OSX() && has("gui_running")
             set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
         elseif WINDOWS() && has("gui_running")
-            set guifont=Monaco:h11,Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+            set guifont=Consolas\ for\ Powerline:h10,Monaco:h11,Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
         endif
     else
         if &term == 'xterm' || &term == 'screen'
@@ -488,7 +499,21 @@
 " powerline {
     let g:Powerline_symbols = 'fancy'
     set encoding=utf-8
-    " set fillchars+=stl:\ ,stlnc:\
+    set fillchars+=stl:\ ,stlnc:\
+" }
+
+" airline {
+    set t_Co=256
+    set laststatus=2
+    set lazyredraw
+    " let g:airline_theme='powerlineish'
+    " 使用powerline打过补丁的字体
+    " let g:airline_powerline_fonts=1
+    if !exists('g:airline_symbols')
+        let g:airline_symbols={}
+    endif
+    " 关闭空白符检测
+    let g:airline#extensions#whitespace#enabled=0
 " }
 
 " neocomplete {
@@ -656,3 +681,4 @@ source $VIMRUNTIME/menu.vim
 
 " vim提示信息乱码的解决
 language messages zh_CN.utf-8
+
