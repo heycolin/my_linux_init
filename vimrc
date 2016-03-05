@@ -36,18 +36,22 @@
     if LINUX()
         set rtp+=~/.vim/bundle/vundle/
         call vundle#rc()
+    elseif OSX()
+        set rtp+=~/.vim/bundle/vundle/
+        call vundle#rc()
     else
         set rtp+=$VIM/vimfiles/bundle/vundle/
         call vundle#rc('$VIM/vimfiles/bundle/')
     endif
 
 
-    set tags=/home/colin/sprite/tags,./tags
+    set tags=/home/colin/sprite/tags,/Users/colin/dev/pokemon/tags,./tags
 " }
 
 " Bundle {
     Bundle 'gmarik/vundle'
-    " Bundle 'bufexplorer.zip'
+    Bundle 'bufexplorer.zip'
+    Bundle 'a.vim'
 
     "------------------
     " code completions
@@ -156,28 +160,17 @@
 " Key (re)Mappings {
     " let mapleader = '\'
 
-    " let s:tstyle = "1"
-    " function! ToTomorrow()
-    "     if s:tstyle == "1"
-    "         let s:tstyle = "2"
-    "         :colorscheme Tomorrow
-    "     else
-    "         let s:tstyle = "1"
-    "         :colorscheme Tomorrow-Night-Eighties
-    "     endif
-    " endfunction
-
     " set pastetoggle=<F2>
     " nnoremap <F2> :set invpaste paste?<CR>
     nmap <F3> :GundoToggle<cr>
     nmap <F4> :IndentGuidesToggle<cr>
-    " nmap <F5> :call ToTomorrow()<cr>
     nmap <F6> :call ToggleBG()<cr>
     nmap <F7> :NeoCompleteDisable<cr>
     nmap <F8> :NeoCompleteEnable<cr>
     nmap <F9> :NERDTreeToggle<cr>
     nmap <F10> :TagbarToggle<cr>
     nmap <F11> :BufExplorer<cr>
+    nmap <D-l> :BufExplorer<cr>
     nmap <D-/> :
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap <leader>t :Tabularize /
@@ -302,8 +295,9 @@
 " }
 
 " Vim UI {
+    " color desert
     if has("gui_running")
-        set background=light
+        set background=dark
         color solarized
     else
         color desert
@@ -417,7 +411,7 @@
         if LINUX() && has("gui_running")
             set guifont=Consolas\ for\ Powerline\ 10,Monaco\ 10,Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
         elseif OSX() && has("gui_running")
-            set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
+            set guifont=Mnoaco:h14,Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
         elseif WINDOWS() && has("gui_running")
             set guifont=Consolas\ for\ Powerline:h10,Monaco:h11,Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
         endif
