@@ -170,7 +170,6 @@
     nmap <F9> :NERDTreeToggle<cr>
     nmap <F10> :TagbarToggle<cr>
     nmap <F11> :BufExplorer<cr>
-    nmap <D-l> :BufExplorer<cr>
     nmap <D-/> :
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap <leader>t :Tabularize /
@@ -411,7 +410,7 @@
         if LINUX() && has("gui_running")
             set guifont=Consolas\ for\ Powerline\ 10,Monaco\ 10,Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
         elseif OSX() && has("gui_running")
-            set guifont=Mnoaco:h14,Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
+            set guifont=Monaco:h14,Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
         elseif WINDOWS() && has("gui_running")
             set guifont=Consolas\ for\ Powerline:h10,Monaco:h11,Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
         endif
@@ -503,9 +502,9 @@
     " let g:airline_theme='powerlineish'
     " 使用powerline打过补丁的字体
     " let g:airline_powerline_fonts=1
-    if !exists('g:airline_symbols')
-        let g:airline_symbols={}
-    endif
+    " if !exists('g:airline_symbols')
+        " let g:airline_symbols={}
+    " endif
     " 关闭空白符检测
     let g:airline#extensions#whitespace#enabled=0
 " }
