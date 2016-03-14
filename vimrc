@@ -173,6 +173,7 @@
     nmap <D-/> :
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap <leader>t :Tabularize /
+    nnoremap <leader>, :Tabularize /,/l0r1
 
     " Wrapped lines goes down/up to next row, rather than next line in file.
     nmap j gj

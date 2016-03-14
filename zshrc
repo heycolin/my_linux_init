@@ -29,17 +29,7 @@ ZSH=$HOME/.oh-my-zsh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabric git-flow zsh-syntax-highlighting z)
-
-# # Enable autosuggestions automatically.
-# zle-line-init() {
-    # zle autosuggest-start
-# }
-# zle -N zle-line-init
-
-# bindkey '^T' autosuggest-toggle
-# # autosuggest-toggle – disable/enable autosuggestions.
-# # autosuggest-execute-suggestion – accept the suggestion and execute it.
+plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabric git-flow zsh-syntax-highlighting zsh-autosuggestions z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -335,7 +325,3 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
 ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM="%{$fg[yellow]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[grey]%}"
-
-# LS colors, made with http://geoff.greer.fm/lscolors/
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export GREP_COLOR='1;33'
