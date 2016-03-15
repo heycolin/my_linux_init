@@ -86,7 +86,7 @@
     " ide features
     "--------------
     Bundle 'scrooloose/nerdtree'
-    Bundle 'humiaozuzu/tabbar'
+    " Bundle 'humiaozuzu/tabbar'
     Bundle 'majutsushi/tagbar'
     Bundle 'mileszs/ack.vim'
     Bundle 'kien/ctrlp.vim'
@@ -153,6 +153,11 @@
     " multiple-cursors
     "--------------
     Bundle 'terryma/vim-multiple-cursors'
+
+    "--------------
+    " waitiong
+    "--------------
+    Bundle 'python.vim'
 
     "==============================================
 " }
@@ -437,6 +442,33 @@
     let g:EasyMotion_leader_key = '<Leader>'
 " }
 
+" syntastic {
+    " let g:syntastic_python_python_exe = 'python3'
+    let g:syntastic_python_checkers = ['flake8']
+
+    " function! Parse_Python_Shebang()
+        " let line = getline(1)
+        " if line =~# '\m^#!\s*[^ \t]*\<python2\=\>'
+            " let g:syntastic_python_python_exec = g:syntastic_python2_python_exe
+            " let g:syntastic_python_checkers = g:syntastic_python2_checkers
+        " elseif line =~# '\m^#!\s*[^ \t]*\<python3\>'
+            " let g:syntastic_python_python_exec = g:syntastic_python3_python_exe
+            " let g:syntastic_python_checkers = g:syntastic_python3_checkers
+        " else
+            " let g:syntastic_python_python_exec = g:syntastic_python_default_version
+            " let g:syntastic_python_checkers = g:syntastic_python_default_version =~# '\<python3$' ?
+                " \ g:syntastic_python3_checkers : g:syntastic_python2_checkers
+        " endif
+    " endfunction
+
+    " command! SyntasticPython2 let g:syntastic_python_python_exec = g:syntastic_python2_python_exe |
+        " \ let g:syntastic_python_checkers = g:syntastic_python2_checkers
+    " command! SyntasticPython3 let g:syntastic_python_python_exec = g:syntastic_python3_python_exe |
+        " \ let g:syntastic_python_checkers = g:syntastic_python3_checkers
+
+    " autocmd BufWinEnter *.py call Parse_Python_Shebang()
+" }
+"
 " Tagbar {
     let g:tagbar_left=0
     let g:tagbar_width=30
@@ -692,7 +724,7 @@ language messages zh_CN.utf-8
         else
             return n
         endif
-    
+
         return n + 1
     endfunction
 
@@ -704,7 +736,7 @@ language messages zh_CN.utf-8
         else
             return n
         endif
-    
+
         return n + 1
     endfunction
 
@@ -758,4 +790,4 @@ language messages zh_CN.utf-8
         call AddTitle()
     endfunction
     " au BufWrite *.v call TitleDet()
-}
+" }
