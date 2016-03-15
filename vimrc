@@ -710,6 +710,12 @@ language messages zh_CN.utf-8
 
 " 更新最近修改时间和文件名 {
     "进行版权声明的设置
+    function! Relpath(filename)
+        let cwd = getcwd()
+        let s = substitute(a:filename, l:cwd . "/" , "\./", "")
+        return s
+    endfunction
+
     "添加或更新头
     map <F4> :call TitleDet()<cr>'s
     function AddTitleHead(lineno)
@@ -755,7 +761,7 @@ language messages zh_CN.utf-8
         " call append(n,"# Author: colin^2")
         " let n = n + 1
         let n = AddTitleHead(n)
-        call append(n,AddPrevfix()."Filename      : ".expand("%:p"))
+        call append(n,AddPrevfix()."Filename      : ".Relpath(expand("%:p")))
         let n = n + 1
         call append(n,AddPrevfix()."Description   :")
         let n = n + 1
@@ -769,7 +775,7 @@ language messages zh_CN.utf-8
         execute '/Last modified\s*:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
         normal ''
         normal mk
-        execute '/Filename\s*:/s@:.*$@\=": ".expand("%:p")@'
+        execute '/Filename\s*:/s@:.*$@\=": ".Relpath(expand("%:p"))@'
         execute "noh"
         normal 'k
     endfunction
@@ -789,5 +795,6 @@ language messages zh_CN.utf-8
         endwhile
         call AddTitle()
     endfunction
-    " au BufWrite *.v call TitleDet()
+    au BufWrite *.lua call TitleDet()
+    au BufWrite *.py call TitleDet()
 " }
