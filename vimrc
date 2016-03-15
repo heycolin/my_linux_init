@@ -676,3 +676,86 @@ source $VIMRUNTIME/menu.vim
 " vim提示信息乱码的解决
 language messages zh_CN.utf-8
 
+" 更新最近修改时间和文件名 {
+    "进行版权声明的设置
+    "添加或更新头
+    map <F4> :call TitleDet()<cr>'s
+    function AddTitleHead(lineno)
+        let n = a:lineno
+        let extension = expand("%:e")
+        if extension == 'py'
+            call append(n,"#! /usr/bin/python")
+            let n = n + 1
+            call append(n,"# -*- coding:utf-8 -*-")
+            let n = n + 1
+            call append(n,"'''")
+        else
+            return n
+        endif
+    
+        return n + 1
+    endfunction
+
+    function AddTitleTail(lineno)
+        let n = a:lineno
+        let extension = expand("%:e")
+        if extension == 'py'
+            call append(n,"'''")
+        else
+            return n
+        endif
+    
+        return n + 1
+    endfunction
+
+    function AddPrevfix()
+        let extension = expand("%:e")
+        if extension == 'lua'
+            return '-- '
+        elseif extension == 'py'
+            return '# '
+        else
+            return '// '
+    endfunction
+
+    function AddTitle()
+        let n = 0
+        " call append(n,"# Author: colin^2")
+        " let n = n + 1
+        let n = AddTitleHead(n)
+        call append(n,AddPrevfix()."Filename      : ".expand("%:p"))
+        let n = n + 1
+        call append(n,AddPrevfix()."Description   :")
+        let n = n + 1
+        call append(n,AddPrevfix()."Last modified : ".strftime("%Y-%m-%d %H:%M"))
+        let n = n + 1
+        let n = AddTitleTail(n)
+    endfunction
+
+    function UpdateTitle()
+        normal m'
+        execute '/Last modified\s*:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
+        normal ''
+        normal mk
+        execute '/Filename\s*:/s@:.*$@\=": ".expand("%:p")@'
+        execute "noh"
+        normal 'k
+    endfunction
+    "判断前10行代码里面，是否有Last modified这个单词，
+    "如果没有的话，代表没有添加过作者信息，需要新添加；
+    "如果有的话，那么只需要更新即可
+    function TitleDet()
+        let n=1
+        "默认为添加
+        while n < 10
+            let line = getline(n)
+            if line =~ '^\{,5}.Last\smodified\s*:\S*.*$'
+                call UpdateTitle()
+                return
+            endif
+            let n = n + 1
+        endwhile
+        call AddTitle()
+    endfunction
+    " au BufWrite *.v call TitleDet()
+}
