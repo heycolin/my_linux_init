@@ -791,5 +791,3 @@ language messages zh_CN.utf-8
     endfunction
     " au BufWrite *.v call TitleDet()
 " }
-
-" test code
