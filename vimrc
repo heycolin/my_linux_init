@@ -56,6 +56,7 @@
     "------------------
     " code completions
     "------------------
+    " Bundle 'Valloric/YouCompleteMe'
     Bundle 'shougo/neocomplete'
     Bundle 'mattn/emmet-vim'
     Bundle 'raimondi/delimitmate'
@@ -124,6 +125,7 @@
 
     "------- markup language -------
     " Bundle 'tpope/vim-markdown'
+    Bundle 'iamcco/markdown-preview.vim'
     " Bundle 'timcharper/textile.vim'
 
     "------- ruby --------
@@ -158,6 +160,7 @@
     " waitiong
     "--------------
     Bundle 'python.vim'
+    Bundle 'davidhalter/jedi-vim'
 
     "==============================================
 " }
@@ -399,7 +402,7 @@
     autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
     autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
     autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+    autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
     autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
     autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
@@ -518,6 +521,34 @@
     let NERDCompactSexyComs=1
 " }
 
+" Markdown {
+    if OSX()
+        " osx
+        let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+    else
+        " ubuntu/windows
+        let g:mkdp_path_to_chrome = "google-chrome"
+    endif
+    " path to the chrome or the command to open chrome(or other modern browsers)
+
+    let g:mkdp_auto_start = 0
+    " set to 1, the vim will open the preview window once enter the markdown
+    " buffer
+
+    let g:mkdp_auto_open = 0
+    " set to 1, the vim will auto open preview window when you edit the
+    " markdown file
+
+    let g:mkdp_auto_close = 1
+    " set to 1, the vim will auto close current preview window when change
+    " from markdown buffer to another buffer
+
+    let g:mkdp_refresh_slow = 0
+    " set to 1, the vim will just refresh markdown when save the buffer or
+    " leave from insert mode, default 0 is auto refresh markdown as you edit or
+    " move the cursor
+" }
+
 " ZenCoding {
     let g:user_emmet_expandabbr_key='<C-j>'
 " }
@@ -541,6 +572,46 @@
     " 关闭空白符检测
     let g:airline#extensions#whitespace#enabled=0
 " }
+
+" " YouCompleteMe {
+"     let g:acp_enableAtStartup = 1
+" 
+"     " enable completion from tags
+"     let g:ycm_collect_identifiers_from_tags_files = 1
+" 
+"     " remap Ultisnips for compatibility for YCM
+"     let g:UltiSnipsExpandTrigger = '<C-j>'
+"     let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+"     let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+" 
+"     " Enable omni completion.
+"     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+" 
+"     " Haskell post write lint and check with ghcmod
+"     " $ `cabal install ghcmod` if missing and ensure
+"     " ~/.cabal/bin is in your $PATH.
+"     if !executable("ghcmod")
+"         autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+"     endif
+" 
+"     " For snippet_complete marker.
+"     if !exists("g:spf13_no_conceal")
+"         if has('conceal')
+"             set conceallevel=2 concealcursor=i
+"         endif
+"     endif
+" 
+"     " Disable the neosnippet preview candidate window
+"     " When enabled, there can be too much visual noise
+"     " especially when splits are used.
+"     set completeopt-=preview
+" " }
 
 " neocomplete {
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -795,6 +866,6 @@ language messages zh_CN.utf-8
         endwhile
         call AddTitle()
     endfunction
-    au BufWrite *.lua call TitleDet()
-    au BufWrite *.py call TitleDet()
+    " au BufWrite *.lua call TitleDet()
+    " au BufWrite *.py call TitleDet()
 " }
