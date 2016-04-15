@@ -45,21 +45,27 @@
     endif
 
 
-    set tags=/home/colin/sprite/tags,/Users/colin/dev/pokemon/tags,./tags
+    set tags=./tags,tags
 " }
 
 " Bundle {
+    " 插件管理器
     Bundle 'gmarik/vundle'
+    " 历史文件列表
     Bundle 'bufexplorer.zip'
+    " cpp,h文件跳转
     Bundle 'a.vim'
 
     "------------------
     " code completions
     "------------------
-    " Bundle 'Valloric/YouCompleteMe'
+    Bundle 'Valloric/YouCompleteMe'
     Bundle 'shougo/neocomplete'
-    Bundle 'mattn/emmet-vim'
+    " html 的插件
+    " Bundle 'mattn/emmet-vim'
+    " 补全括号
     Bundle 'raimondi/delimitmate'
+    " 超级tab
     Bundle 'ervandew/supertab'
     " snippets
     Bundle 'garbas/vim-snipmate'
@@ -71,22 +77,30 @@
     "-----------------
     " fast navigation
     "-----------------
-    " Bundle 'edsono/vim-matchit'
-    " Bundle 'lokaltog/vim-easymotion'
+    " 自定义标记跳转
+    Bundle 'edsono/vim-matchit'
+    " 快速跳转
+    Bundle 'lokaltog/vim-easymotion'
 
     "--------------
     " fast editing
     "--------------
     " Bundle 'tpope/vim-surround'
+    " 注释
     Bundle 'scrooloose/nerdcommenter'
+    " 历史编辑别表
     Bundle 'sjl/gundo.vim'
+    " 代码对齐
     Bundle 'godlygeek/tabular'
+    " 缩进显示
     Bundle 'nathanaelkane/vim-indent-guides'
 
     "--------------
     " ide features
     "--------------
+    " 导航树
     Bundle 'scrooloose/nerdtree'
+    " tab 式窗口管理器
     " Bundle 'humiaozuzu/tabbar'
     Bundle 'majutsushi/tagbar'
     Bundle 'mileszs/ack.vim'
@@ -125,6 +139,7 @@
 
     "------- markup language -------
     " Bundle 'tpope/vim-markdown'
+    " markdown 实时预览
     Bundle 'iamcco/markdown-preview.vim'
     " Bundle 'timcharper/textile.vim'
 
@@ -154,13 +169,15 @@
     "--------------
     " multiple-cursors
     "--------------
+    " 多光标编辑
     Bundle 'terryma/vim-multiple-cursors'
 
     "--------------
-    " waitiong
     "--------------
+    " python 模块
     Bundle 'python.vim'
-    Bundle 'davidhalter/jedi-vim'
+    " python 语法检查模块
+    Bundle 'dakvidhalter/jedi-vim'
 
     "==============================================
 " }
@@ -181,7 +198,16 @@
     nmap <D-/> :
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap <leader>t :Tabularize /
-    nnoremap <leader>, :Tabularize /,/l0r1
+    nnoremap <leader>, :Tabularize /,/l0r1<CR>
+
+    " " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
+    " fun! ToggleFullscreen()
+        " call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
+    " endf
+    " " 全屏开/关快捷键
+    " map <silent> <F12> :call ToggleFullscreen()<CR>
+    " " 启动 vim 时自动全屏
+    " autocmd VimEnter * call ToggleFullscreen()
 
     " Wrapped lines goes down/up to next row, rather than next line in file.
     nmap j gj
@@ -211,17 +237,17 @@
     " map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 
     " Quickly edit/reload the vimrc file
-    nmap <silent> <leader>ev :e $MYVIMRC<CR>
-    nmap <silent> <leader>sv :so $MYVIMRC<CR>
+    " nmap <silent> <leader>ev :e $MYVIMRC<CR>
+    " nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
     " eggcache vim
-    nnoremap ; :
-    :command W w
-    :command WQ wq
-    :command Wq wq
-    :command Q q
-    :command Qa qa
-    :command QA qa
+    " nnoremap ; :
+    :command! W w
+    :command! WQ wq
+    :command! Wq wq
+    :command! Q q
+    :command! Qa qa
+    :command! QA qa
     " :command Tab Tabularize /
 
     " for macvim
@@ -260,7 +286,7 @@
             set background=dark
         endif
     endfunction
-    noremap <leader>bg :call ToggleBG()<CR>
+    " noremap <leader>bg :call ToggleBG()<CR>
 
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
@@ -308,16 +334,27 @@
         set background=dark
         color solarized
     else
-        color desert
+        " color Tomorrow-Night-Eighties
+        " color desert
+        set background=dark
+        color solarized
+
+        " git clone git://github.com/seebi/dircolors-solarized.git
+        " cp ~/dircolors-solarized/dircolors.256dark ~/.dircolors
+        " eval 'dircolors .dircolors'
+        " export TERM=xterm-256color to .zshrc
+        " source ~/.zshrc
+        " git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git
+        " ./gnome-terminal-colors-solarized/set_dark.sh
     endif
 
-    if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-        let g:solarized_termcolors=256
-        let g:solarized_termtrans=1
-        let g:solarized_contrast="normal"
-        let g:solarized_visibility="normal"
-        color solarized             " Load a colorscheme
-    endif
+    " if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
+        " let g:solarized_termcolors=256
+        " let g:solarized_termtrans=1
+        " let g:solarized_contrast="normal"
+        " let g:solarized_visibility="normal"
+        " color solarized             " Load a colorscheme
+    " endif
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
@@ -527,7 +564,9 @@
         let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
     else
         " ubuntu/windows
-        let g:mkdp_path_to_chrome = "google-chrome"
+        " chromium-browser
+        " let g:mkdp_path_to_chrome = "google-chrome"
+        let g:mkdp_path_to_chrome = "chromium-browser"
     endif
     " path to the chrome or the command to open chrome(or other modern browsers)
 
@@ -573,116 +612,126 @@
     let g:airline#extensions#whitespace#enabled=0
 " }
 
-" " YouCompleteMe {
-"     let g:acp_enableAtStartup = 1
-" 
-"     " enable completion from tags
-"     let g:ycm_collect_identifiers_from_tags_files = 1
-" 
-"     " remap Ultisnips for compatibility for YCM
-"     let g:UltiSnipsExpandTrigger = '<C-j>'
-"     let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-"     let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-" 
-"     " Enable omni completion.
-"     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"     autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-"     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" 
-"     " Haskell post write lint and check with ghcmod
-"     " $ `cabal install ghcmod` if missing and ensure
-"     " ~/.cabal/bin is in your $PATH.
-"     if !executable("ghcmod")
-"         autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-"     endif
-" 
-"     " For snippet_complete marker.
-"     if !exists("g:spf13_no_conceal")
-"         if has('conceal')
-"             set conceallevel=2 concealcursor=i
-"         endif
-"     endif
-" 
-"     " Disable the neosnippet preview candidate window
-"     " When enabled, there can be too much visual noise
-"     " especially when splits are used.
-"     set completeopt-=preview
-" " }
+if filereadable(expand("~/.vim/bundle/YouCompleteMe/README.md"))
+    " YouCompleteMe {
+        let g:ycm_confirm_extra_conf = 0
+        let g:syntastic_always_populate_loc_list = 1
+        let g:ycm_error_symbol = '>>'
+        let g:ycm_warning_symbol = '>*'
+        " nnoremap gl :YcmCompleter GoToDeclaration<CR>
+        " nnoremap gf :YcmCompleter GoToDefinition<CR>
+        " nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+        " let g:acp_enableAtStartup = 1
 
-" neocomplete {
-    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-    " AutoComplPop.
-    let g:acp_enableAtStartup = 1
-    " Use neocomplete.
-    let g:neocomplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:neocomplete#enable_smart_case = 1
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 2
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+        " " enable completion from tags
+        " let g:ycm_collect_identifiers_from_tags_files = 1
 
-    " Define dictionary.
-    let g:neocomplete#sources#dictionary#dictionaries = {
-                \ 'default' : '',
-                \ 'vimshell' : $HOME.'/.vimshell_hist',
-                \ 'scheme' : $HOME.'/.gosh_completions'
-                \ }
+        " " remap Ultisnips for compatibility for YCM
+        " let g:UltiSnipsExpandTrigger = '<C-j>'
+        " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+        " let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-    " Define keyword.
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+        " " Enable omni completion.
+        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-    " Plugin key-mappings.
-    inoremap <expr><C-g>     neocomplete#undo_completion()
-    inoremap <expr><C-l>     neocomplete#complete_common_string()
+        " " Haskell post write lint and check with ghcmod
+        " " $ `cabal install ghcmod` if missing and ensure
+        " " ~/.cabal/bin is in your $PATH.
+        " if !executable("ghcmod")
+        " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+        " endif
 
-    " Recommended key-mappings.
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-        " return neocomplete#close_popup() . "\<CR>"
-        " For no inserting <CR> key.
-        return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-    endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplete#close_popup()
-    inoremap <expr><C-e>  neocomplete#cancel_popup()
-    inoremap <expr><C-\>  neocomplete#cancel_popup()
-    " Close popup by <Space>.
-    " inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+        " " For snippet_complete marker.
+        " if !exists("g:spf13_no_conceal")
+        " if has('conceal')
+        " set conceallevel=2 concealcursor=i
+        " endif
+        " endif
 
-    " AutoComplPop like behavior.
-    let g:neocomplete#enable_auto_select = 1
+        " " Disable the neosnippet preview candidate window
+        " " When enabled, there can be too much visual noise
+        " " especially when splits are used.
+        " set completeopt-=preview
+    " }
+else
+    " neocomplete {
+        "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+        " AutoComplPop.
+        let g:acp_enableAtStartup = 1
+        " Use neocomplete.
+        let g:neocomplete#enable_at_startup = 1
+        " Use smartcase.
+        let g:neocomplete#enable_smart_case = 1
+        " Set minimum syntax keyword length.
+        let g:neocomplete#sources#syntax#min_keyword_length = 2
+        let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-    " Enable omni completion.
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        " Define dictionary.
+        let g:neocomplete#sources#dictionary#dictionaries = {
+                    \ 'default' : '',
+                    \ 'vimshell' : $HOME.'/.vimshell_hist',
+                    \ 'scheme' : $HOME.'/.gosh_completions'
+                    \ }
 
-    " Enable heavy omni completion.
-    if !exists('g:neocomplete#sources#omni#input_patterns')
-        let g:neocomplete#sources#omni#input_patterns = {}
-    endif
-    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+        " Define keyword.
+        if !exists('g:neocomplete#keyword_patterns')
+            let g:neocomplete#keyword_patterns = {}
+        endif
+        let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-    " For perlomni.vim setting.
-    " https://github.com/c9s/perlomni.vim
-    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" }
+        " Plugin key-mappings.
+        inoremap <expr><C-g>     neocomplete#undo_completion()
+        inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+        " Recommended key-mappings.
+        " <CR>: close popup and save indent.
+        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        function! s:my_cr_function()
+            " return neocomplete#close_popup() . "\<CR>"
+            " For no inserting <CR> key.
+            return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+        endfunction
+        " <TAB>: completion.
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        " <C-h>, <BS>: close popup and delete backword char.
+        inoremap <expr><C-h>  neocomplete#smart_close_popup()."\<C-h>"
+        inoremap <expr><BS>   neocomplete#smart_close_popup()."\<C-h>"
+        inoremap <expr><C-y>  neocomplete#close_popup()
+        inoremap <expr><C-e>  neocomplete#cancel_popup()
+        inoremap <expr><C-\>  neocomplete#cancel_popup()
+        " Close popup by <Space>.
+        " inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+        " AutoComplPop like behavior.
+        let g:neocomplete#enable_auto_select = 1
+
+        " Enable omni completion.
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+        " Enable heavy omni completion.
+        if !exists('g:neocomplete#sources#omni#input_patterns')
+            let g:neocomplete#sources#omni#input_patterns = {}
+        endif
+        "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+        "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+        "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+        " For perlomni.vim setting.
+        " https://github.com/c9s/perlomni.vim
+        let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    " }
+endif
+
 
 " SuperTab {
     " let g:SuperTabDefultCompletionType='context'
@@ -782,14 +831,21 @@ language messages zh_CN.utf-8
 " 更新最近修改时间和文件名 {
     "进行版权声明的设置
     function! Relpath(filename)
+        if WINDOWS()
+            let cwd = substitute(getcwd(), "\\" , "/", "gc")
+            let filename = substitute(a:filename, "\\" , "/", "gc")
+            let s = substitute(a:filename, l:cwd, "\.", "")
+            return s
+        endif
+
         let cwd = getcwd()
-        let s = substitute(a:filename, l:cwd . "/" , "\./", "")
+        let s = substitute(a:filename, l:cwd , "\.", "")
         return s
     endfunction
 
     "添加或更新头
-    map <F4> :call TitleDet()<cr>'s
-    function AddTitleHead(lineno)
+    map <F4> :call TitleDet()<cr>
+    function! AddTitleHead(lineno)
         let n = a:lineno
         let extension = expand("%:e")
         if extension == 'py'
@@ -805,7 +861,7 @@ language messages zh_CN.utf-8
         return n + 1
     endfunction
 
-    function AddTitleTail(lineno)
+    function! AddTitleTail(lineno)
         let n = a:lineno
         let extension = expand("%:e")
         if extension == 'py'
@@ -817,7 +873,7 @@ language messages zh_CN.utf-8
         return n + 1
     endfunction
 
-    function AddPrevfix()
+    function! AddPrevfix()
         let extension = expand("%:e")
         if extension == 'lua'
             return '-- '
@@ -827,7 +883,17 @@ language messages zh_CN.utf-8
             return '// '
     endfunction
 
-    function AddTitle()
+    function! AddStartLine()
+        let extension = expand("%:e")
+        if extension == 'lua'
+            return '--- '
+        elseif extension == 'py'
+            return '# '
+        else
+            return '// '
+    endfunction
+
+    function! AddTitle()
         let n = 0
         " call append(n,"# Author: colin^2")
         " let n = n + 1
@@ -841,7 +907,7 @@ language messages zh_CN.utf-8
         let n = AddTitleTail(n)
     endfunction
 
-    function UpdateTitle()
+    function! UpdateTitle()
         normal m'
         execute '/Last modified\s*:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
         normal ''
@@ -853,7 +919,7 @@ language messages zh_CN.utf-8
     "判断前10行代码里面，是否有Last modified这个单词，
     "如果没有的话，代表没有添加过作者信息，需要新添加；
     "如果有的话，那么只需要更新即可
-    function TitleDet()
+    function! TitleDet()
         let n=1
         "默认为添加
         while n < 10
@@ -868,4 +934,48 @@ language messages zh_CN.utf-8
     endfunction
     " au BufWrite *.lua call TitleDet()
     " au BufWrite *.py call TitleDet()
+" }
+
+" 给lua文件当前行的function添加注释信息 {
+    map <F2> :call FunctionDet()<cr>
+
+    function! LuaParserFunction(linenum, linestr)
+        let n = a:linenum
+        let funcStart  = matchend(a:linestr,'function\s')
+        let funcEnded  = match(a:linestr,'(')
+        let paramStart = matchend(a:linestr, '(')
+        let paramEnded = match(a:linestr,')')
+        let funcname   = strpart(a:linestr,funcStart , funcEnded  - funcStart)
+        let paramStr   = strpart(a:linestr,paramStart, paramEnded - paramStart)
+        let paramStr   = substitute(l:paramStr, '\s', '', 'g')
+        let paramList  = split(l:paramStr, ',')
+        " 开始增加文本
+        call append(n,AddStartLine().l:funcname)
+        let n = n + 1
+        call append(n,AddPrevfix()." ")
+        let n = n + 1
+        for param in paramList
+            call append(n,AddPrevfix()."@param ".param.' ')
+            let n = n + 1
+        endfor
+        call append(n,AddPrevfix()."@return ")
+        let n = n + 1
+        call append(n,AddPrevfix()."@usage ")
+        let n = n + 1
+    endfunction
+
+    function! LuaFunctionDet()
+        let n = line('.')
+        let line = getline(n)
+        if line =~ '.*function\s.*(.*)'
+            call LuaParserFunction(n-1,l:line)
+        endif
+    endfunction
+
+    function! FunctionDet()
+        let extension = expand("%:e")
+        if extension == 'lua'
+            call LuaFunctionDet()
+        endif
+    endfunction
 " }

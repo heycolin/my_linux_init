@@ -10,6 +10,8 @@ ZSH=$HOME/.oh-my-zsh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim=nvim
+alias vi=nvim
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -66,6 +68,8 @@ export SERVERS='13 84 133 134 135 136 137 85 86 90 91'
 xset r rate 150 80
 
 alias gvim="gvim 2>/dev/null"
+
+export TERM=xterm-256color
 
 #########################################
 #标题栏、任务栏样式{{{
