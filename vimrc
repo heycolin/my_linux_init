@@ -187,6 +187,7 @@
 
     " set pastetoggle=<F2>
     " nnoremap <F2> :set invpaste paste?<CR>
+    nmap <F2> :BufExplorer<cr>
     nmap <F3> :GundoToggle<cr>
     nmap <F4> :IndentGuidesToggle<cr>
     nmap <F6> :call ToggleBG()<cr>
@@ -194,7 +195,6 @@
     nmap <F8> :NeoCompleteEnable<cr>
     nmap <F9> :NERDTreeToggle<cr>
     nmap <F10> :TagbarToggle<cr>
-    nmap <F11> :BufExplorer<cr>
     nmap <D-/> :
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap <leader>t :Tabularize /
@@ -304,7 +304,7 @@
     set mousehide                       " Hide the mouse cursor while typing
     set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-    set virtualedit=onemore             " Allow for cursor beyond last character
+    " set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
     " set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
@@ -417,8 +417,8 @@
 " }
 
 " Formatting {
-    " set nowrap                      " Do not wrap long lines
-    set wrap                        " wrap lines
+    set nowrap                      " Do not wrap long lines
+    " set wrap                        " wrap lines
     set autoindent                  " Indent at the same level of the previous line
     set smartindent                 " indent when
     set shiftwidth=4                " Use indents of 4 spaces
@@ -671,6 +671,9 @@ else
         " Set minimum syntax keyword length.
         let g:neocomplete#sources#syntax#min_keyword_length = 2
         let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+        " let g:ycm_key_invoke_completion = '<C-Space>'
+        let g:ycm_key_invoke_completion = ''
 
         " Define dictionary.
         let g:neocomplete#sources#dictionary#dictionaries = {
