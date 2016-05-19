@@ -12,7 +12,7 @@ git_uri="https://github.com/heycolin/my_linux_init.git"
 # check vundle
 if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
     _mkdir_ "$HOME/.vim/bundle/vundle"
-    git clone https://github.com/gmarik/vundle.git $HOME/.vim1/bundle/vundle
+    git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 fi
 
 # check my_vimrc
@@ -34,7 +34,12 @@ _lnfile_() {
 _lnfile_ "$local_dir/bundles.vim" "$HOME/.vim/bundles.vim"
 _lnfile_ "$local_dir/vimrc" "$HOME/.vimrc"
 _lnfile_ "$local_dir/zshrc" "$HOME/.zshrc"
+_lnfile_ "$HOME/.vim" "$HOME/.config/nvim"
+_lnfile_ "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"
 sudo cp $local_dir/*.ttf /usr/share/fonts/truetype/
+
+# xx-net
+git clone https://github.com/XX-net/XX-net.git $HOME/XX-net
 
 # zsh plugins
 git clone git://github.com/jimmijj/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
