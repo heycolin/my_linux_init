@@ -31,7 +31,7 @@ alias vi=nvim
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabric git-flow zsh-syntax-highlighting zsh-autosuggestions z)
+plugins=(git command-not-found compleat debian dircycle encode64 lol screen fabric git-flow zsh-syntax-highlighting z)
 
 source $ZSH/oh-my-zsh.sh
 

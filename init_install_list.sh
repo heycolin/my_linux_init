@@ -8,6 +8,8 @@ sudo apt-get install git gitk git-svn ssh
 sudo apt-get install gdb g++ gcc cmake make
 sudo apt-get install scons
 
+sudo apt-get install zsh
+chsh -s /bin/zsh
 sudo apt-get install vim-gnome
 sudo apt-get install neovim
 sudo apt-get install ctags
