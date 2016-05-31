@@ -187,7 +187,6 @@
 
     " set pastetoggle=<F2>
     " nnoremap <F2> :set invpaste paste?<CR>
-    nmap <F2> :BufExplorer<cr>
     nmap <F3> :GundoToggle<cr>
     nmap <F4> :IndentGuidesToggle<cr>
     nmap <F6> :call ToggleBG()<cr>
@@ -197,6 +196,7 @@
     nmap <F10> :TagbarToggle<cr>
     nmap <D-/> :
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
+    nnoremap ,b :BufExplorer<CR>
     nnoremap <leader>t :Tabularize /
     nnoremap <leader>, :Tabularize /,/l0r1<CR>
 
@@ -275,6 +275,7 @@
 
 " General {
     set background=dark         " Assume a dark background
+    set autoread
 
     " Allow to trigger background
     function! ToggleBG()
@@ -389,7 +390,7 @@
     set showmode                    " Display the current mode
     set backspace=indent,eol,start  " More powerful backspacing
     set linespace=0                 " No extra spaces between rows
-    set number                      " Line numbers on
+    " set number                      " Line numbers on
     set showmatch                   " Show matching brackets/parenthesis
     set matchtime=2                 " show matching bracket for 0.2 seconds
     set incsearch                   " Find as you type search
@@ -417,8 +418,8 @@
 " }
 
 " Formatting {
-    set nowrap                      " Do not wrap long lines
-    " set wrap                        " wrap lines
+    " set nowrap                      " Do not wrap long lines
+    set wrap                        " wrap lines
     set autoindent                  " Indent at the same level of the previous line
     set smartindent                 " indent when
     set shiftwidth=4                " Use indents of 4 spaces
@@ -631,14 +632,14 @@ if filereadable(expand("~/.vim/bundle/YouCompleteMe/README.md"))
         " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
         " let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-        " " Enable omni completion.
-        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+        " Enable omni completion.
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
         " " Haskell post write lint and check with ghcmod
         " " $ `cabal install ghcmod` if missing and ensure
@@ -712,7 +713,7 @@ else
         " inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
         " AutoComplPop like behavior.
-        let g:neocomplete#enable_auto_select = 1
+        let g:neocomplete#enable_auto_select = 0
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -982,3 +983,26 @@ language messages zh_CN.utf-8
         endif
     endfunction
 " }
+" vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+
+" <c-r><c-w> 或者 <c-r>=expand("<cword>")
+" 例子：
+" 1. nmap <leader>ss :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+
+" 2. nmap <silent> <leader>h <ESC>:lv /\<<c-r><c-w>\>/j **/*.[h]<CR>:lw<CR>
+
+" vnoremap <silent> gv :vim /<C-R>=expand("<cword>")/ ** <CR>:copen<CR>
+" nmap <silent> gv :vim /<C-R>=expand("<cword>")/ ** <CR>:copen<CR>
+nmap <silent> gv <ESC>:vim /\<<c-r><c-w>\>/ **/*.lua<CR>:copen<CR>
+
+" vnoremap * :
+    " \let old_reg=getreg('"')let old_regtype=getregtype('"')
+    " \gvy/=substitute(
+    " \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')
+    " \gV:call setreg('"', old_reg, old_regtype)
+
+" vnoremap # :
+    " \let old_reg=getreg('"')let old_regtype=getregtype('"')
+    " \gvy?=substitute(
+    " \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')
+    " \gV:call setreg('"', old_reg, old_regtype)

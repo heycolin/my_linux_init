@@ -10,6 +10,8 @@ sudo apt-get install scons
 
 sudo apt-get install zsh
 chsh -s /bin/zsh
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
 sudo apt-get install vim-gnome
 sudo apt-get install neovim
 sudo apt-get install ctags
