@@ -199,7 +199,10 @@
     nnoremap ,b :BufExplorer<CR>
     nnoremap <leader>t :Tabularize /
     nnoremap <leader>, :Tabularize /,/l0r1<CR>
+    nnoremap <leader>) :Tabularize /)/l1r0<CR>
+    nnoremap <leader>( :Tabularize /(/l0r1<CR>
     nnoremap <leader>0 :Tabularize /)/l1r0<CR>
+    nnoremap <leader>9 :Tabularize /(/l0r1<CR>
 
     " " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
     " fun! ToggleFullscreen()
