@@ -46,12 +46,12 @@ git clone git://github.com/jimmijj/zsh-syntax-highlighting $HOME/.oh-my-zsh/cust
 git clone git://github.com/tarruda/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # solarized.git
-git clone git://github.com/seebi/dircolors-solarized.git
-cp ~/dircolors-solarized/dircolors.256dark ~/.dircolors
+git clone git://github.com/seebi/dircolors-solarized.git $HOME/dircolors-solarized
+cp $HOME/dircolors-solarized/dircolors.256dark $HOME/.dircolors
 eval 'dircolors .dircolors'
 export TERM=xterm-256color
-git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git
-./gnome-terminal-colors-solarized/set_dark.sh
+git clone git://github.com/sigurdga/gnome-terminal-colors-solarized.git $HOME/gnome-terminal-colors-solarized
+$HOME/gnome-terminal-colors-solarized/set_dark.sh
 # sudo fc-cache -f -v
 
 # font file for powline
