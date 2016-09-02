@@ -177,7 +177,7 @@
     " python 模块
     Bundle 'python.vim'
     " python 语法检查模块
-    Bundle 'dakvidhalter/jedi-vim'
+    Bundle 'davidhalter/jedi-vim'
 
     "==============================================
 " }
