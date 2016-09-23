@@ -59,7 +59,7 @@
     "------------------
     " code completions
     "------------------
-    Bundle 'Valloric/YouCompleteMe'
+    " Bundle 'Valloric/YouCompleteMe'
     Bundle 'shougo/neocomplete'
     " html 的插件
     " Bundle 'mattn/emmet-vim'
@@ -103,7 +103,8 @@
     " tab 式窗口管理器
     " Bundle 'humiaozuzu/tabbar'
     Bundle 'majutsushi/tagbar'
-    Bundle 'mileszs/ack.vim'
+    " Bundle 'mileszs/ack.vim'
+    Bundle 'petdance/ack'
     Bundle 'kien/ctrlp.vim'
     Bundle 'tpope/vim-fugitive'
     " Bundle 'lokaltog/vim-powerline'
@@ -177,7 +178,7 @@
     " python 模块
     Bundle 'python.vim'
     " python 语法检查模块
-    Bundle 'davidhalter/jedi-vim'
+    Bundle 'dakvidhalter/jedi-vim'
 
     "==============================================
 " }
@@ -198,11 +199,15 @@
     nnoremap ,e :e <C-R>=expand('%:p:h') . '/'<CR>
     nnoremap ,b :BufExplorer<CR>
     nnoremap <leader>t :Tabularize /
-    nnoremap <leader>, :Tabularize /,/l0r1<CR>
+    " nnoremap <leader>, :Tabularize /,/l0r1<CR>
+    nnoremap <leader>, :Tabularize /^[^,}]*\zs,/l0r1<CR>
     nnoremap <leader>) :Tabularize /)/l1r0<CR>
     nnoremap <leader>( :Tabularize /(/l0r1<CR>
     nnoremap <leader>0 :Tabularize /)/l1r0<CR>
     nnoremap <leader>9 :Tabularize /(/l0r1<CR>
+
+    " nnoremap zoo gg V G zO<CR>
+    " nnoremap zcc gg V G zc<CR>
 
     " " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
     " fun! ToggleFullscreen()
@@ -316,6 +321,8 @@
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
     set iskeyword-=-                    " '-' is an end of word designator
+
+    set fileformats=unix,dos
 
     " Setting up the directories {
         " set backup                  " Backups are nice ...
@@ -617,54 +624,54 @@
     let g:airline#extensions#whitespace#enabled=0
 " }
 
-if filereadable(expand("~/.vim/bundle/YouCompleteMe/README.md"))
-    " YouCompleteMe {
-        let g:ycm_confirm_extra_conf = 0
-        let g:syntastic_always_populate_loc_list = 1
-        let g:ycm_error_symbol = '>>'
-        let g:ycm_warning_symbol = '>*'
-        " nnoremap gl :YcmCompleter GoToDeclaration<CR>
-        " nnoremap gf :YcmCompleter GoToDefinition<CR>
-        " nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-        " let g:acp_enableAtStartup = 1
+" if filereadable(expand("~/.vim/bundle/YouCompleteMe/README.md"))
+    " " YouCompleteMe {
+        " let g:ycm_confirm_extra_conf = 0
+        " let g:syntastic_always_populate_loc_list = 1
+        " let g:ycm_error_symbol = '>>'
+        " let g:ycm_warning_symbol = '>*'
+        " " nnoremap gl :YcmCompleter GoToDeclaration<CR>
+        " " nnoremap gf :YcmCompleter GoToDefinition<CR>
+        " " nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+        " " let g:acp_enableAtStartup = 1
 
-        " " enable completion from tags
-        " let g:ycm_collect_identifiers_from_tags_files = 1
+        " " " enable completion from tags
+        " " let g:ycm_collect_identifiers_from_tags_files = 1
 
-        " " remap Ultisnips for compatibility for YCM
-        " let g:UltiSnipsExpandTrigger = '<C-j>'
-        " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-        " let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+        " " " remap Ultisnips for compatibility for YCM
+        " " let g:UltiSnipsExpandTrigger = '<C-j>'
+        " " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+        " " let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-        " Enable omni completion.
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+        " " Enable omni completion.
+        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-        " " Haskell post write lint and check with ghcmod
-        " " $ `cabal install ghcmod` if missing and ensure
-        " " ~/.cabal/bin is in your $PATH.
-        " if !executable("ghcmod")
-        " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-        " endif
+        " " " Haskell post write lint and check with ghcmod
+        " " " $ `cabal install ghcmod` if missing and ensure
+        " " " ~/.cabal/bin is in your $PATH.
+        " " if !executable("ghcmod")
+        " " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+        " " endif
 
-        " " For snippet_complete marker.
-        " if !exists("g:spf13_no_conceal")
-        " if has('conceal')
-        " set conceallevel=2 concealcursor=i
-        " endif
-        " endif
+        " " " For snippet_complete marker.
+        " " if !exists("g:spf13_no_conceal")
+        " " if has('conceal')
+        " " set conceallevel=2 concealcursor=i
+        " " endif
+        " " endif
 
-        " " Disable the neosnippet preview candidate window
-        " " When enabled, there can be too much visual noise
-        " " especially when splits are used.
-        " set completeopt-=preview
-    " }
-else
+        " " " Disable the neosnippet preview candidate window
+        " " " When enabled, there can be too much visual noise
+        " " " especially when splits are used.
+        " " set completeopt-=preview
+    " " }
+" else
     " neocomplete {
         "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
         " AutoComplPop.
@@ -738,7 +745,7 @@ else
         " https://github.com/c9s/perlomni.vim
         let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
     " }
-endif
+" endif
 
 
 " SuperTab {
@@ -853,33 +860,6 @@ language messages zh_CN.utf-8
 
     "添加或更新头
     map <F4> :call TitleDet()<cr>
-    function! AddTitleHead(lineno)
-        let n = a:lineno
-        let extension = expand("%:e")
-        if extension == 'py'
-            call append(n,"#! /usr/bin/python")
-            let n = n + 1
-            call append(n,"# -*- coding:utf-8 -*-")
-            let n = n + 1
-            call append(n,"'''")
-        else
-            return n
-        endif
-
-        return n + 1
-    endfunction
-
-    function! AddTitleTail(lineno)
-        let n = a:lineno
-        let extension = expand("%:e")
-        if extension == 'py'
-            call append(n,"'''")
-        else
-            return n
-        endif
-
-        return n + 1
-    endfunction
 
     function! AddPrevfix()
         let extension = expand("%:e")
@@ -901,17 +881,76 @@ language messages zh_CN.utf-8
             return '// '
     endfunction
 
+    function! AddCopyRight(lineno)
+        let n = a:lineno
+        call append(n,AddPrevfix()."Copyright (c) 2015-2016 KOOGAME. All rights reserved.")
+        return n + 1
+    endfunction
+
+    function! AddTitleHead(lineno)
+        let n = a:lineno
+        let extension = expand("%:e")
+        if extension == 'py'
+            call append(n,AddPrevfix()."! /usr/bin/python")
+            let n = n + 1
+            call append(n,AddPrevfix()."-*- coding:utf-8 -*-")
+            let n = n + 1
+            call append(n,"'''")
+        elseif extension == 'lua'
+            call append(n,AddPrevfix()."=====================================================")
+        else
+            return n
+        endif
+
+        return n + 1
+    endfunction
+
+    function! AddTitleTail(lineno)
+        let n = a:lineno
+        let extension = expand("%:e")
+        if extension == 'py'
+            call append(n,"'''")
+        elseif extension == 'lua'
+            call append(n,AddPrevfix()."=====================================================")
+        else
+            return n
+        endif
+
+        return n + 1
+    endfunction
+
+    function! AddAuthor(lineno)
+        let n = a:lineno
+        call append(n,AddPrevfix()."@Author        : colin")
+        return n + 1
+    endfunction
+
+    function! AddFileName(lineno)
+        let n = a:lineno
+        call append(n,AddPrevfix()."@FileName      : ".Relpath(expand("%:t")))
+        return n + 1
+    endfunction
+
+    function! AddDescription(lineno)
+        let n = a:lineno
+        call append(n,AddPrevfix()."@Description   : ")
+        return n + 1
+    endfunction
+
+    function! AddModified(lineno)
+        let n = a:lineno
+        call append(n,AddPrevfix()."@Last modified : ".strftime("%Y-%m-%d %H:%M"))
+        return n + 1
+    endfunction
+
     function! AddTitle()
         let n = 0
-        " call append(n,"# Author: colin^2")
-        " let n = n + 1
         let n = AddTitleHead(n)
-        call append(n,AddPrevfix()."Filename      : ".Relpath(expand("%:p")))
-        let n = n + 1
-        call append(n,AddPrevfix()."Description   :")
-        let n = n + 1
-        call append(n,AddPrevfix()."Last modified : ".strftime("%Y-%m-%d %H:%M"))
-        let n = n + 1
+        let n = AddCopyRight(n)
+        let n = AddAuthor(n)
+        let n = AddFileName(n)
+        let n = AddDescription(n)
+        let n = AddModified(n)
         let n = AddTitleTail(n)
     endfunction
 
@@ -920,7 +959,8 @@ language messages zh_CN.utf-8
         execute '/Last modified\s*:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
         normal ''
         normal mk
-        execute '/Filename\s*:/s@:.*$@\=": ".Relpath(expand("%:p"))@'
+        " execute '/FileName\s*:/s@:.*$@\=": ".Relpath(expand("%:p"))@'
+        execute '/FileName\s*:/s@:.*$@\=": ".Relpath(expand("%:t"))@'
         execute "noh"
         normal 'k
     endfunction
