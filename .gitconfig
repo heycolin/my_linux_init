@@ -1,0 +1,31 @@
+[user]
+    email = colin@colin.com
+    name = colin
+[gui]
+    encoding = utf-8
+    recentrepo = C:/Users/Administrator/Desktop/egg_guide_export
+[i18n]
+    commitencoding = utf-8
+[svn]
+    pathnameencoding = utf-8
+[core]
+    repositoryformatversion = 0
+    filemode = false
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    hideDotFiles = dotGitOnly
+    packedGitLimit = 256m
+    packedGitWindowSize = 256m
+    longpaths = true
+    autocrlf = true 
+[http]
+    postBuffer = 524288000
+[pack]
+    deltaCacheSize = 256m
+    packSizeLimit = 256m
+    windowMemory = 1024m
+[merge]
+    tool = meld
+[mergetool "meld"]
+    path = C:/Program Files (x86)/Meld/Meld.exe
