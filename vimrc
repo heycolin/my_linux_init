@@ -34,152 +34,191 @@
     " }
 
     if LINUX()
+        " Plug
+        call plug#begin('~/.vim/bundle')
+
+        " vundle
         set rtp+=~/.vim/bundle/vundle/
         call vundle#rc()
     elseif OSX()
+        " Plug
+        call plug#begin('~/.vim/bundle')
+
+        " vundle
         set rtp+=~/.vim/bundle/vundle/
         call vundle#rc()
     else
+        " Plug
+        call plug#begin('$VIM/vimfiles/bundle')
+
+        " vundle
         set rtp+=$VIM/vimfiles/bundle/vundle/
         call vundle#rc('$VIM/vimfiles/bundle/')
     endif
+
+    " for fzf setting
+    " If installed using git
+    set rtp+=~/.fzf
+    " If installed using Homebrew
+    set rtp+=/usr/local/opt/fzf
 
 
     set tags=./tags,tags
 " }
 
 " Bundle {
+" Bundle -> Plug
     " 插件管理器
-    Bundle 'gmarik/vundle'
+    Plug 'gmarik/vundle'
     " 历史文件列表
-    Bundle 'bufexplorer.zip'
+    Plug 'bufexplorer.zip'
     " cpp,h文件跳转
-    Bundle 'a.vim'
+    Plug 'a.vim'
 
     "------------------
     " code completions
     "------------------
-    " Bundle 'Valloric/YouCompleteMe'
-    Bundle 'shougo/neocomplete'
+    " Plug 'Valloric/YouCompleteMe'
+    Plug 'shougo/neocomplete'
     " html 的插件
-    " Bundle 'mattn/emmet-vim'
+    " Plug 'mattn/emmet-vim'
     " 补全括号
-    Bundle 'raimondi/delimitmate'
+    Plug 'raimondi/delimitmate'
     " 超级tab
-    Bundle 'ervandew/supertab'
+    Plug 'ervandew/supertab'
     " snippets
-    Bundle 'garbas/vim-snipmate'
-    Bundle 'honza/vim-snippets'
+    Plug 'garbas/vim-snipmate'
+    Plug 'honza/vim-snippets'
     "------ snipmate dependencies -------
-    Bundle 'marcweber/vim-addon-mw-utils'
-    Bundle 'tomtom/tlib_vim'
+    Plug 'MarcWeber/vim-addon-mw-utils'
+    Plug 'tomtom/tlib_vim'
 
     "-----------------
     " fast navigation
     "-----------------
     " 自定义标记跳转
-    Bundle 'edsono/vim-matchit'
-    " 快速跳转
-    Bundle 'lokaltog/vim-easymotion'
+    Plug 'edsono/vim-matchit'
+    " 快速跳转 <leader>-f
+    Plug 'lokaltog/vim-easymotion'
+
+    " 快速跳转 key-s
+    Plug 'justinmk/vim-sneak'
+    " 高亮
+    Plug 'haya14busa/incsearch.vim'
+    " 模糊高亮
+    Plug 'haya14busa/incsearch-fuzzy.vim'
+
+    " 快速搜索
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+    " git/svn 变更
+    Plug 'mhinz/vim-signify'
+
+    " 快速选择块
+    Plug 'terryma/vim-expand-region'
 
     "--------------
     " fast editing
     "--------------
-    " Bundle 'tpope/vim-surround'
+    " 修改包裹符号 cs ds
+    " Plug 'tpope/vim-surround'
     " 注释
-    Bundle 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdcommenter'
     " 历史编辑别表
-    Bundle 'sjl/gundo.vim'
+    Plug 'sjl/gundo.vim'
     " 代码对齐
-    Bundle 'godlygeek/tabular'
+    Plug 'godlygeek/tabular'
     " 缩进显示
-    Bundle 'nathanaelkane/vim-indent-guides'
+    Plug 'nathanaelkane/vim-indent-guides'
 
     "--------------
     " ide features
     "--------------
     " 导航树
-    Bundle 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree'
     " tab 式窗口管理器
-    " Bundle 'humiaozuzu/tabbar'
-    Bundle 'majutsushi/tagbar'
-    " Bundle 'mileszs/ack.vim'
-    Bundle 'petdance/ack'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'tpope/vim-fugitive'
-    " Bundle 'lokaltog/vim-powerline'
-    " Bundle 'powerline/powerline'
-    Bundle 'bling/vim-airline'
-    Bundle 'scrooloose/syntastic'
-    Bundle 'bronson/vim-trailing-whitespace'
+    " Plug 'humiaozuzu/tabbar'
+    Plug 'majutsushi/tagbar'
+    " Plug 'mileszs/ack.vim'
+    " Plug 'petdance/ack'
+    Plug 'rking/ag.vim'
+    Plug 'kien/ctrlp.vim'
+    Plug 'tpope/vim-fugitive'
+    " Plug 'lokaltog/vim-powerline'
+    " Plug 'powerline/powerline'
+    Plug 'bling/vim-airline'
+    Plug 'scrooloose/syntastic'
+    Plug 'bronson/vim-trailing-whitespace'
 
     "-------------
     " other utils
     "-------------
-    " Bundle 'humiaozuzu/fcitx-status'
-    Bundle 'nvie/vim-togglemouse'
+    " Plug 'humiaozuzu/fcitx-status'
+    Plug 'nvie/vim-togglemouse'
 
     "----------------------------------------
     " syntax/indent for language enhancement
     "----------------------------------------
     "------- web backend ---------
-    " Bundle '2072/php-indenting-for-vim'
-    "Bundle 'tpope/vim-rails'
-    Bundle 'lepture/vim-jinja'
-    "Bundle 'digitaltoad/vim-jade'
+    " Plug '2072/php-indenting-for-vim'
+    "Plug 'tpope/vim-rails'
+    Plug 'lepture/vim-jinja'
+    "Plug 'digitaltoad/vim-jade'
 
     "------- web frontend ----------
-    " Bundle 'othree/html5.vim'
-    " Bundle 'tpope/vim-haml'
-    " Bundle 'pangloss/vim-javascript'
-    " Bundle 'kchmck/vim-coffee-script'
-    " Bundle 'nono/jquery.vim'
-    " Bundle 'groenewege/vim-less'
-    " Bundle 'wavded/vim-stylus'
-    " Bundle 'nono/vim-handlebars'
+    " Plug 'othree/html5.vim'
+    " Plug 'tpope/vim-haml'
+    " Plug 'pangloss/vim-javascript'
+    " Plug 'kchmck/vim-coffee-script'
+    " Plug 'nono/jquery.vim'
+    " Plug 'groenewege/vim-less'
+    " Plug 'wavded/vim-stylus'
+    " Plug 'nono/vim-handlebars'
 
     "------- markup language -------
-    " Bundle 'tpope/vim-markdown'
+    " Plug 'tpope/vim-markdown'
     " markdown 实时预览
-    Bundle 'iamcco/markdown-preview.vim'
-    " Bundle 'timcharper/textile.vim'
+    Plug 'iamcco/markdown-preview.vim'
+    " Plug 'timcharper/textile.vim'
 
     "------- ruby --------
-    " Bundle 'tpope/vim-endwise'
+    " Plug 'tpope/vim-endwise'
 
     "------- go ----------
-    " Bundle 'fatih/vim-go'
+    " Plug 'fatih/vim-go'
 
     "------- fps ------
-    Bundle 'kien/rainbow_parentheses.vim'
-    " Bundle 'wlangstroth/vim-racket'
-    " Bundle 'vim-scripts/vimclojure'
-    " Bundle 'rosstimson/scala-vim-support'
+    Plug 'kien/rainbow_parentheses.vim'
+    " Plug 'wlangstroth/vim-racket'
+    " Plug 'vim-scripts/vimclojure'
+    " Plug 'rosstimson/scala-vim-support'
 
     "--------------
     " color schemes
     "--------------
-    Bundle 'rickharris/vim-blackboard'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'rickharris/vim-monokai'
-    Bundle 'tpope/vim-vividchalk'
-    Bundle 'lokaltog/vim-distinguished'
-    Bundle 'chriskempson/vim-tomorrow-theme'
-    Bundle 'fisadev/fisa-vim-colorscheme'
+    Plug 'rickharris/vim-blackboard'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'rickharris/vim-monokai'
+    Plug 'tpope/vim-vividchalk'
+    Plug 'lokaltog/vim-distinguished'
+    Plug 'chriskempson/vim-tomorrow-theme'
+    Plug 'fisadev/fisa-vim-colorscheme'
 
     "--------------
     " multiple-cursors
     "--------------
     " 多光标编辑
-    Bundle 'terryma/vim-multiple-cursors'
+    Plug 'terryma/vim-multiple-cursors'
 
     "--------------
     "--------------
     " python 模块
-    Bundle 'python.vim'
+    Plug 'python.vim'
     " python 语法检查模块
-    Bundle 'dakvidhalter/jedi-vim'
+    Plug 'dakvidhalter/jedi-vim'
 
+
+call plug#end()
     "==============================================
 " }
 
@@ -492,7 +531,22 @@
 
 " easy-motion {
     let g:EasyMotion_leader_key = '<Leader>'
-" }
+
+    " <Leader>f{char} to move to {char}
+    map  <Leader>f <Plug>(easymotion-bd-f)
+    nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+    " s{char}{char} to move to {char}{char}
+    nmap s <Plug>(easymotion-overwin-f2)
+
+    " Move to line
+    map <Leader>L <Plug>(easymotion-bd-jk)
+    nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+    " Move to word
+    map  <Leader>w <Plug>(easymotion-bd-w)
+    nmap <Leader>w <Plug>(easymotion-overwin-w)
+    " }
 
 " syntastic {
     " let g:syntastic_python_python_exe = 'python3'
@@ -757,6 +811,42 @@
     function! DoNothing(findstart, base)
     endfunction
     set completefunc=DoNothing
+" }
+
+" agn.vim {
+    " You can specify a custom ag name and path in your .vimrc like so:
+    " let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
+    let g:ag_prg="ag --vimgrep"
+    " You can configure ag.vim to always start searching from your project root instead of the cwd
+    let g:ag_working_path_mode="r"
+" }
+
+" incsearch {
+
+    " You can use other keymappings like <C-l> instead of <CR> if you want to
+    " use these mappings as default search and somtimes want to move cursor with
+    " EasyMotion.
+    " function! s:incsearch_config(...) abort
+      " return incsearch#util#deepextend(deepcopy({
+      " \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+      " \   'keymap': {
+      " \     "\<CR>": '<Over>(easymotion)'
+      " \   },
+      " \   'is_expr': 0
+      " \ }), get(a:, 1, {}))
+    " endfunction
+    " noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+    " noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+    " noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+" }
+
+" incsearch-fuzzy {
+    map z/ <Plug>(incsearch-fuzzy-/)
+    map z? <Plug>(incsearch-fuzzy-?)
+    map zg/ <Plug>(incsearch-fuzzy-stay)
 " }
 
 " ctrlp {

@@ -12,6 +12,8 @@ sudo apt-get install zsh
 chsh -s /bin/zsh
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 sudo apt-get install vim-gnome
 sudo apt-get install neovim
 sudo apt-get install ctags
@@ -33,3 +35,5 @@ sudo apt-get install fcitx-googlepinyin
 sudo apt-get install chromium-browser
 sudo apt-get install flashplugin-installer
 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
