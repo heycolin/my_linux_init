@@ -74,6 +74,7 @@
     Plug 'bufexplorer.zip'
     " cpp,h文件跳转
     Plug 'a.vim'
+    Plug 'mark.vim'
 
     "------------------
     " code completions
@@ -130,6 +131,8 @@
     Plug 'godlygeek/tabular'
     " 缩进显示
     Plug 'nathanaelkane/vim-indent-guides'
+    " 多搜索高亮
+    Plug 'lfv89/vim-interestingwords'
 
     "--------------
     " ide features
@@ -141,9 +144,11 @@
     Plug 'majutsushi/tagbar'
     " Plug 'mileszs/ack.vim'
     " Plug 'petdance/ack'
+    " 快速搜索，依赖the_sliver_searcher on mac/unix
     Plug 'rking/ag.vim'
     Plug 'kien/ctrlp.vim'
-    Plug 'tpope/vim-fugitive'
+    " git冲突处理
+    " Plug 'tpope/vim-fugitive'
     " Plug 'lokaltog/vim-powerline'
     " Plug 'powerline/powerline'
     Plug 'bling/vim-airline'
@@ -215,7 +220,7 @@
     " python 模块
     Plug 'python.vim'
     " python 语法检查模块
-    Plug 'dakvidhalter/jedi-vim'
+    Plug 'davidhalter/jedi-vim'
 
 
 call plug#end()
