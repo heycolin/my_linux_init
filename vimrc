@@ -79,8 +79,11 @@
     "------------------
     " code completions
     "------------------
-    " Plug 'Valloric/YouCompleteMe'
-    Plug 'shougo/neocomplete'
+    if WINDOWS()
+        Plug 'shougo/neocomplete'
+    else
+        Plug 'Valloric/YouCompleteMe'
+    endif
     " html 的插件
     " Plug 'mattn/emmet-vim'
     " 补全括号
@@ -146,7 +149,9 @@
     " Plug 'petdance/ack'
     " 快速搜索，依赖the_sliver_searcher on mac/unix
     Plug 'rking/ag.vim'
-    Plug 'kien/ctrlp.vim'
+    if has("gui_running")
+        Plug 'kien/ctrlp.vim'
+    endif
     " git冲突处理
     " Plug 'tpope/vim-fugitive'
     " Plug 'lokaltog/vim-powerline'
@@ -683,54 +688,7 @@ call plug#end()
     let g:airline#extensions#whitespace#enabled=0
 " }
 
-" if filereadable(expand("~/.vim/bundle/YouCompleteMe/README.md"))
-    " " YouCompleteMe {
-        " let g:ycm_confirm_extra_conf = 0
-        " let g:syntastic_always_populate_loc_list = 1
-        " let g:ycm_error_symbol = '>>'
-        " let g:ycm_warning_symbol = '>*'
-        " " nnoremap gl :YcmCompleter GoToDeclaration<CR>
-        " " nnoremap gf :YcmCompleter GoToDefinition<CR>
-        " " nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-        " " let g:acp_enableAtStartup = 1
-
-        " " " enable completion from tags
-        " " let g:ycm_collect_identifiers_from_tags_files = 1
-
-        " " " remap Ultisnips for compatibility for YCM
-        " " let g:UltiSnipsExpandTrigger = '<C-j>'
-        " " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-        " " let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
-        " " Enable omni completion.
-        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-        " " " Haskell post write lint and check with ghcmod
-        " " " $ `cabal install ghcmod` if missing and ensure
-        " " " ~/.cabal/bin is in your $PATH.
-        " " if !executable("ghcmod")
-        " " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-        " " endif
-
-        " " " For snippet_complete marker.
-        " " if !exists("g:spf13_no_conceal")
-        " " if has('conceal')
-        " " set conceallevel=2 concealcursor=i
-        " " endif
-        " " endif
-
-        " " " Disable the neosnippet preview candidate window
-        " " " When enabled, there can be too much visual noise
-        " " " especially when splits are used.
-        " " set completeopt-=preview
-    " " }
-" else
+if WINDOWS()
     " neocomplete {
         "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
         " AutoComplPop.
@@ -804,7 +762,54 @@ call plug#end()
         " https://github.com/c9s/perlomni.vim
         let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
     " }
-" endif
+else
+    " YouCompleteMe {
+        let g:ycm_confirm_extra_conf = 0
+        let g:syntastic_always_populate_loc_list = 1
+        let g:ycm_error_symbol = '>>'
+        let g:ycm_warning_symbol = '>*'
+        " nnoremap gl :YcmCompleter GoToDeclaration<CR>
+        " nnoremap gf :YcmCompleter GoToDefinition<CR>
+        " nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+        let g:acp_enableAtStartup = 1
+
+        " " enable completion from tags
+        " let g:ycm_collect_identifiers_from_tags_files = 1
+
+        " " remap Ultisnips for compatibility for YCM
+        " let g:UltiSnipsExpandTrigger = '<C-j>'
+        " let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+        " let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+        " Enable omni completion.
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+        " " Haskell post write lint and check with ghcmod
+        " " $ `cabal install ghcmod` if missing and ensure
+        " " ~/.cabal/bin is in your $PATH.
+        " if !executable("ghcmod")
+        " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+        " endif
+
+        " " For snippet_complete marker.
+        " if !exists("g:spf13_no_conceal")
+        " if has('conceal')
+        " set conceallevel=2 concealcursor=i
+        " endif
+        " endif
+
+        " " Disable the neosnippet preview candidate window
+        " " When enabled, there can be too much visual noise
+        " " especially when splits are used.
+        " set completeopt-=preview
+    " }
+endif
 
 
 " SuperTab {
@@ -854,10 +859,16 @@ call plug#end()
     map zg/ <Plug>(incsearch-fuzzy-stay)
 " }
 
-" ctrlp {
-    set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
-    let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-" }
+if has("gui_running")
+    " ctrlp {
+        set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
+        let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+    " }
+else
+    " FZF {
+        nmap <c-p> :FZF<CR>
+    " }
+endif
 
 " multiple-cursors {
     "let g:multi_cursor_use_default_mapping=0
