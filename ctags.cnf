@@ -1,0 +1,19 @@
+--regex-lua=/^.*[ \t]*function[ \t]*(\w+):(\w+).*$/\2/f/
+--regex-lua=/^.*[ \t]*function[ \t]*(\w+)\.(\w+).*$/\2/f/
+--regex-lua=/^.*[ \t]*function[ \t]*(\w+)[ \t]*\(.*$/\1/f/
+
+--regex-lua=/^.*[ \t]*\w+\.(\w+)[ \t]*=[ \t]*[0-9]+.*$/\1/e/
+--regex-lua=/^.*[ \t]*\w+\.(\w+)[ \t]*=[ \t]*\{.*$/\1/e/
+
+--regex-lua=/^[ \t]*(\w+)[ \t]*=[ \t]*[0-9]+.*$/\1/e/
+--regex-lua=/^[ \t]*(\w+)[ \t]*=[ \t]*\{.*$/\1/e/
+
+--regex-lua=/^[ \t]*local[ \t]*(\w+)[ \t]*=[ \t]*[0-9]+.*$/\1/e/
+--regex-lua=/^[ \t]*local[ \t]*(\w+)[ \t]*=[ \t]*\{.*$/\1/e/
+
+--regex-lua=/^[ \t]*module\s+\"(\w+)\".*$/\1/m,module/
+--regex-lua=/^[ \t]*module\s+\"[a-zA-Z0-9._]+\.(\w+)\".*$/\1/m,module/
+
+--regex-lua=/[ \t]*([a-zA-Z0-9_]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,function/
+--regex-lua=/function[ \t]+([a-zA-Z0-9_]+)[\.:]([a-zA-Z0-9_]+)[ \t]*\(/\2/f,function/
+
