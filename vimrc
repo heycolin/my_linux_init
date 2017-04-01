@@ -150,7 +150,7 @@
     " 快速搜索，依赖the_sliver_searcher on mac/unix
     Plug 'rking/ag.vim'
     if has("gui_running")
-        Plug 'kien/ctrlp.vim'
+        Plug 'ctrlpvim/ctrlp.vim'
     endif
     " git冲突处理
     " Plug 'tpope/vim-fugitive'
@@ -208,7 +208,8 @@
     "--------------
     Plug 'rickharris/vim-blackboard'
     Plug 'altercation/vim-colors-solarized'
-    Plug 'rickharris/vim-monokai'
+    " Plug 'rickharris/vim-monokai'
+    Plug 'tomasr/molokai'
     Plug 'tpope/vim-vividchalk'
     Plug 'lokaltog/vim-distinguished'
     Plug 'chriskempson/vim-tomorrow-theme'
@@ -450,7 +451,7 @@ call plug#end()
     set showmode                    " Display the current mode
     set backspace=indent,eol,start  " More powerful backspacing
     set linespace=0                 " No extra spaces between rows
-    " set number                      " Line numbers on
+    set number                      " Line numbers on
     set showmatch                   " Show matching brackets/parenthesis
     set matchtime=2                 " show matching bracket for 0.2 seconds
     set incsearch                   " Find as you type search
@@ -478,8 +479,8 @@ call plug#end()
 " }
 
 " Formatting {
-    " set nowrap                      " Do not wrap long lines
-    set wrap                        " wrap lines
+    set nowrap                      " Do not wrap long lines
+    " set wrap                        " wrap lines
     set autoindent                  " Indent at the same level of the previous line
     set smartindent                 " indent when
     set shiftwidth=4                " Use indents of 4 spaces
@@ -620,7 +621,7 @@ call plug#end()
 " Nerd Tree {
     let NERDChristmasTree=1
     let NERDTreeWinSize=30
-    let NERDTreeChDirMode=2
+    let NERDTreeChDirMode=0 "Never change curDir by the NERD tree
     let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
     " let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$',  '\~$']
     let NERDTreeShowBookmarks=0
@@ -1106,7 +1107,7 @@ language messages zh_CN.utf-8
         " 开始增加文本
         call append(n,AddStartLine().l:funcname)
         let n = n + 1
-        call append(n,AddPrevfix()." ")
+        call append(n,AddPrevfix())
         let n = n + 1
         for param in paramList
             call append(n,AddPrevfix()."@param ".param.' ')
