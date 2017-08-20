@@ -479,8 +479,8 @@ call plug#end()
 " }
 
 " Formatting {
-    set nowrap                      " Do not wrap long lines
-    " set wrap                        " wrap lines
+    " set nowrap                      " Do not wrap long lines
+    set wrap                        " wrap lines
     set autoindent                  " Indent at the same level of the previous line
     set smartindent                 " indent when
     set shiftwidth=4                " Use indents of 4 spaces

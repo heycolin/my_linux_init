@@ -21,11 +21,15 @@ export CPLUS_INCLUDE_PATH=/usr/local/include
 # android package
 
 # Add environment variable NDK_ROOT for cocos2d-x
-export NDK_ROOT=/Users/colin/sdks/android-ndk-r9
+export NDK_ROOT=/Users/colin/sdks/android-ndk-r10d
+# export NDK_ROOT=/Users/colin/sdks/android-ndk-r9d
+# export NDK_ROOT=/Users/colin/sdks/android-ndk-r14b
 export PATH=$NDK_ROOT:$PATH
 
 # Add environment variable ANDROID_SDK_ROOT for cocos2d-x
 export ANDROID_SDK_ROOT=/Users/colin/Library/Android/sdk
+export ANDROID_HOME=/Users/colin/Library/Android/sdk
+export EGG_PAK_PLUGIN_PATH=/Users/colin/dev/koogame/egg_pak/code/frameworks/cocos2d-x/plugin
 export PATH=$ANDROID_SDK_ROOT:$PATH
 export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
 
@@ -38,6 +42,7 @@ alias mysql=/usr/local/mysql/bin/mysql
 alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 alias vim=/usr/local/Cellar/vim/7.4.1589/bin/vim
 alias vi=/usr/local/Cellar/vim/7.4.1589/bin/vim
+alias c2tap="mysql -D egg_log -h eggtap.koogame.cn -u colin -p"
 
 export SERVERS='13 84 133 134 135 136 137 85 86 90 91'
 
@@ -326,5 +331,6 @@ export PATH=$COCOS_X_ROOT:$PATH
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
 export COCOS_TEMPLATES_ROOT=/Users/colin/dev/cocos/cocos2d-x-3.10/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
