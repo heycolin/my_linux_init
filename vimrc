@@ -74,7 +74,7 @@
     Plug 'bufexplorer.zip'
     " cpp,h文件跳转
     Plug 'a.vim'
-    Plug 'mark.vim'
+    " Plug 'mark.vim'
 
     "------------------
     " code completions
@@ -152,6 +152,12 @@
     if has("gui_running")
         Plug 'ctrlpvim/ctrlp.vim'
     endif
+    if WINDOWS()
+        Plug 'Yggdroot/LeaderF', { 'do': './install.bat' }
+    elseif OSX() || LINUX()
+        Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    endif
+
     " git冲突处理
     " Plug 'tpope/vim-fugitive'
     " Plug 'lokaltog/vim-powerline'
@@ -176,14 +182,14 @@
     "Plug 'digitaltoad/vim-jade'
 
     "------- web frontend ----------
-    " Plug 'othree/html5.vim'
-    " Plug 'tpope/vim-haml'
-    " Plug 'pangloss/vim-javascript'
-    " Plug 'kchmck/vim-coffee-script'
-    " Plug 'nono/jquery.vim'
-    " Plug 'groenewege/vim-less'
-    " Plug 'wavded/vim-stylus'
-    " Plug 'nono/vim-handlebars'
+    Plug 'othree/html5.vim'
+    Plug 'tpope/vim-haml'
+    Plug 'pangloss/vim-javascript'
+    Plug 'kchmck/vim-coffee-script'
+    Plug 'nono/jquery.vim'
+    Plug 'groenewege/vim-less'
+    Plug 'wavded/vim-stylus'
+    Plug 'nono/vim-handlebars'
 
     "------- markup language -------
     " Plug 'tpope/vim-markdown'
@@ -394,12 +400,14 @@ call plug#end()
     " color desert
     if has("gui_running")
         set background=dark
-        color solarized
+        " color solarized
+        color molokai
     else
         " color Tomorrow-Night-Eighties
         " color desert
         set background=dark
-        color solarized
+        " color solarized
+        color molokai
 
         " git clone git://github.com/seebi/dircolors-solarized.git
         " cp ~/dircolors-solarized/dircolors.256dark ~/.dircolors
@@ -451,7 +459,7 @@ call plug#end()
     set showmode                    " Display the current mode
     set backspace=indent,eol,start  " More powerful backspacing
     set linespace=0                 " No extra spaces between rows
-    set number                      " Line numbers on
+    " set number                      " Line numbers on
     set showmatch                   " Show matching brackets/parenthesis
     set matchtime=2                 " show matching bracket for 0.2 seconds
     set incsearch                   " Find as you type search
@@ -998,7 +1006,8 @@ language messages zh_CN.utf-8
         let n = a:lineno
         let extension = expand("%:e")
         if extension == 'py'
-            call append(n,AddPrevfix()."! /usr/bin/python")
+
+            call append(n,AddPrevfix()."! /usr/bin/env python")
             let n = n + 1
             call append(n,AddPrevfix()."-*- coding:utf-8 -*-")
             let n = n + 1
