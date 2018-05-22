@@ -89,7 +89,7 @@
     " 补全括号
     Plug 'raimondi/delimitmate'
     " 超级tab
-    Plug 'ervandew/supertab'
+    " Plug 'ervandew/supertab'
     " snippets
     Plug 'garbas/vim-snipmate'
     Plug 'honza/vim-snippets'
@@ -125,7 +125,7 @@
     " fast editing
     "--------------
     " 修改包裹符号 cs ds
-    " Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-surround'
     " 注释
     Plug 'scrooloose/nerdcommenter'
     " 历史编辑别表
@@ -186,7 +186,7 @@
     Plug 'tpope/vim-haml'
     Plug 'pangloss/vim-javascript'
     Plug 'kchmck/vim-coffee-script'
-    Plug 'nono/jquery.vim'
+    " Plug 'nono/jquery.vim'
     Plug 'groenewege/vim-less'
     Plug 'wavded/vim-stylus'
     Plug 'nono/vim-handlebars'
@@ -234,6 +234,9 @@
     " python 语法检查模块
     Plug 'davidhalter/jedi-vim'
 
+
+    " js语法高亮
+    " Plug 'othree/yajs.vim'
 
 call plug#end()
     "==============================================
@@ -773,10 +776,15 @@ if WINDOWS()
     " }
 else
     " YouCompleteMe {
+        let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
         let g:ycm_confirm_extra_conf = 0
         let g:syntastic_always_populate_loc_list = 1
         let g:ycm_error_symbol = '>>'
         let g:ycm_warning_symbol = '>*'
+
+        let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+
         " nnoremap gl :YcmCompleter GoToDeclaration<CR>
         " nnoremap gf :YcmCompleter GoToDefinition<CR>
         " nnoremap gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -823,13 +831,13 @@ endif
 
 " SuperTab {
     " let g:SuperTabDefultCompletionType='context'
-    let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-    let g:SuperTabRetainCompletionType=2
-    let g:SuperTabMappingForward="<tab>"
+    " let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+    " let g:SuperTabRetainCompletionType=2
+    " let g:SuperTabMappingForward="<tab>"
 
-    function! DoNothing(findstart, base)
-    endfunction
-    set completefunc=DoNothing
+    " function! DoNothing(findstart, base)
+    " endfunction
+    " set completefunc=DoNothing
 " }
 
 " agn.vim {
@@ -917,12 +925,23 @@ autocmd BufReadPost *
       \ endif
 
 " syntax support
-autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
+" autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
+
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 " js
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+
+
+"vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
 
 " Rainbow parentheses for Lisp and variants
 let g:rbpt_colorpairs = [
@@ -1166,3 +1185,16 @@ nmap <silent> gv <ESC>:vim /\<<c-r><c-w>\>/ **/*.lua<CR>:copen<CR>
     " \gvy?=substitute(
     " \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')
     " \gV:call setreg('"', old_reg, old_regtype)
+
+" 包裹符号
+nmap ,' viwdi'<Esc>pa'<Esc>
+nmap ," viwdi"<Esc>pa"<Esc>
+nmap ,( viwdi( <Esc>pa )<Esc>
+nmap ,[ viwdi[ <Esc>pa ]<Esc>
+nmap ,{ viwdi{ <Esc>pa }<Esc>
+
+vmap ,' di'<Esc>pa'<Esc>
+vmap ," di"<Esc>pa"<Esc>
+vmap ,( di( <Esc>pa )<Esc>
+vmap ,[ di[ <Esc>pa ]<Esc>
+vmap ,{ di{ <Esc>pa }<Esc>
