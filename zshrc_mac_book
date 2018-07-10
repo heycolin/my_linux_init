@@ -50,8 +50,8 @@ export DJANGO_SETTINGS_MODULE=settings
 
 export SERVERS='13 84 133 134 135 136 137 85 86 90 91'
 
-export LC_ALL=es_ES.UTF-8
-export LANG=es_ES.UTF-8
+# export LC_ALL=es_ES.UTF-8
+# export LANG=es_ES.UTF-8
 
 #########################################
 #标题栏、任务栏样式{{{
